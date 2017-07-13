@@ -53,16 +53,15 @@
               <li><a href="browse-resumes.html">Browse Resumes</a></li>
             </ul>
           </li>
-
           <li><a href="blog.html">Blog</a></li>
         </ul>
 
 
-        <ul  id="responsive" class="float-right">
-          <li *ngIf="app.isLoggedIn == false">
+        <ul class="responsive float-right">
+          <li *ngIf="!username">
             <a routerLink="/login"><i class="fa fa-lock"></i> Log In / <i class="fa fa-user"></i> Register</a></li>
-          <li *ngIf="app.isLoggedIn == true">
-            <a>{{userinfo.name}}</a>
+          <li *ngIf="username">
+            <a>{{username}}</a>
             <ul>
               <li><a (click)="logout()">LogOut</a></li>
             </ul>

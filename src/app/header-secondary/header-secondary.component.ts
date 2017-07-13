@@ -14,7 +14,7 @@ declare var $: any;
 })
 export class HeaderSecondaryComponent implements OnInit {
 
-  userinfo: any;
+  username: string = '';
   error: string = '';
 
   constructor(
@@ -25,23 +25,14 @@ export class HeaderSecondaryComponent implements OnInit {
 
   ngOnInit() {
     $('body').customJquery();
-    if (this.app.isLoggedIn == false) {
+    if (this.app.isLoggedIn == true) {
+      this.username = localStorage.getItem('username');
+    } else if (this.app.isLoggedIn == false) {
       if (localStorage.getItem('authToken') != '') {
         this.app.isLoggedIn = true;
-        this.getUserInfo();
+        this.username = localStorage.getItem('username')
       }
-    } else if (this.app.isLoggedIn == true) {
-      this.getUserInfo();
     }
-  }
-
-  public getUserInfo() {
-    this.userService.getUserInfo().subscribe(
-      data => {
-        this.userinfo = data;
-        error => this.error = error.json().error;
-      }
-    );
   }
 
   public logout() {

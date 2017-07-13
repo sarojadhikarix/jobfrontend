@@ -1,5 +1,6 @@
 export class Job {
             id : string = '';
+            title : string = '';
             description : string = '';
             category : string = '';
             company_name : string = '';
@@ -18,5 +19,7 @@ export class Job {
             created_at : string = '';
             city : string = '';
             district : string = '';
-            country : string = '';
+            country : string = 'Nepal';
+            zone : string = '';
+            status : boolean = false;
 }

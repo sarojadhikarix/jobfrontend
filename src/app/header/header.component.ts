@@ -23,15 +23,14 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     $('body').customJquery();
-    if (this.app.isLoggedIn == false) {
+    if (this.app.isLoggedIn == true) {
+      this.username = localStorage.getItem('username');
+    } else if (this.app.isLoggedIn == false) {
       if (localStorage.getItem('authToken') != '') {
         this.app.isLoggedIn = true;
-        
+        this.username = localStorage.getItem('username');
       }
-    }else if(this.app.isLoggedIn == true){
-      
     }
-    
   }
 
 

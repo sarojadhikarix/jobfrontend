@@ -32,6 +32,7 @@ export class UserService {
     logout() {
         this.app.isLoggedIn = false;
         this.setAccessToken('');
+        this.setUserName('');
         this.router.navigateByUrl('/');
     }
 
