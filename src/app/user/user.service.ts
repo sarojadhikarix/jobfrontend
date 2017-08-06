@@ -23,7 +23,6 @@ export class UserService {
     }
 
     login(login: LoginData): Observable<LoginData> {
-        console.log(login);
         return this.http.post(environment.apiRoute + 'oauth/token', login)
             .map(res => res.json() as LoginData)
             .catch(this.handleError)
@@ -38,9 +37,8 @@ export class UserService {
 
 
     register(register: Register): Observable<Register> {
-        console.log(register);
         return this.http.post(environment.apiRoute + 'register', register)
-            .map(res => res.json() as Register)
+            .map(res => res.json())
             .catch(this.handleError)
     }
 
@@ -62,6 +60,6 @@ export class UserService {
     }
 
     private handleError(error: any): Promise<any> {
-        return Promise.reject(error.json().error);
+        return Promise.reject(error.json());
     }
 }

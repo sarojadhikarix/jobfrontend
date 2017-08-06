@@ -27,7 +27,7 @@ export class AddJobComponent implements OnInit {
       confirm('Please fill the title field.');
     } else if (this.job.description == '') {
       confirm('Please fill the description field.');
-    } else if (this.job.category == '') {
+    } else if (this.job.category_id == null) {
       confirm('Please fill the category field.');
     } else if (this.job.company_name == '') {
       confirm('Please fill the company name field.');

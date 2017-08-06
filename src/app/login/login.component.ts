@@ -5,7 +5,6 @@ import { Register } from './../user/register';
 import { Router } from '@angular/router';
 import { UserService } from './../user/user.service';
 import { AppComponent } from './../app.component';
-
 declare var $: any;
 @Component({
   selector: 'app-login',
@@ -15,11 +14,13 @@ declare var $: any;
 })
 export class LoginComponent implements OnInit {
 
+
   username: string = '';
   loginData: LoginData = new LoginData();
   register: Register = new Register();
   error: string;
   router: Router;
+  registererror: any = null;
 
   constructor(
     private jsService: CustomJavascriptService,
@@ -43,15 +44,22 @@ export class LoginComponent implements OnInit {
     this.userService.login(this.loginData).subscribe(
       data => {
         this.handleSuccess(data);
-        error => this.handleError(error);
-      });
+      },
+      error => this.handleError(error.error)
+
+    );
   }
 
   public registerUser(): void {
-    this.error = '';
+    this.registererror = null;
     this.userService.register(this.register).subscribe(
-      data => {
-        error => this.error = error;
+      () => {
+      },
+      error => {
+        this.registererror = error;
+        this.loginData.username = this.register.email;
+        this.loginData.password = this.register.password;
+        this.login();
       }
     )
   }
@@ -75,5 +83,9 @@ export class LoginComponent implements OnInit {
 
   private handleError(error: any) {
     this.error = error;
+  }
+
+  public reset() {
+    this.error = '';
   }
 }

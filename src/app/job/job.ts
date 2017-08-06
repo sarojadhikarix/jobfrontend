@@ -2,7 +2,7 @@ export class Job {
             id : string = '';
             title : string = '';
             description : string = '';
-            category : string = '';
+            category_id : number = 0;
             company_name : string = '';
             company_website : string = '';
             company_email : string = '';

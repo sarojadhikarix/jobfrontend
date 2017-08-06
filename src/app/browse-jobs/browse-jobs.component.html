@@ -1,0 +1,99 @@
+<app-header-secondary></app-header-secondary>
+<!-- Titlebar
+================================================== -->
+<div id="titlebar">
+	<div class="container">
+		<div class="ten columns">
+
+			<h2 *ngIf="type == 'category'">{{categorytype}}</h2>
+			<h2 *ngIf="type == 'alljobs'">All Jobs</h2>
+			<h2 *ngIf="type == 'search'">Search Jobs</h2>
+			<span *ngIf="count != 0">We found {{count}} jobs matching:</span>
+			<span *ngIf="count == 0">No jobs found.</span>
+		</div>
+
+		<div class="six columns">
+			<a routerLink="/add-job" class="button">Post a Job, It’s Free!</a>
+		</div>
+
+	</div>
+</div>
+
+
+<!-- Content
+================================================== -->
+<div class="container">
+	<div class="eleven columns">
+		<div class="search-container" style="padding:0px 0px 30px 0px !important;">
+			<!-- Form -->
+			<input type="text" style="border:1px solid;" class="ico-01" [(ngModel)]="search.keyword" placeholder="job title, keywords or company name"
+			 value="" />
+			<input type="text" style="border:1px solid;" class="ico-02" [(ngModel)]="search.location" placeholder="city, province or region"
+			 value="" />
+			<button (click)="searchJobs()"><i class="fa fa-search"></i></button>
+		</div>
+	</div>
+	<!-- Recent Jobs -->
+	<div class="eleven columns">
+		<div class="padding-right">
+
+
+			<ul class="job-list full">
+
+				<div *ngFor="let job of jobs | slice:sliceStart:sliceEnd; let j =index">
+					<li *ngIf="job.status == 1">
+
+						<a routerLink="/job/{{job.id}}">
+							<img src="./assets/images/job-list-logo-02.png" alt="">
+							<div class="job-list-content">
+							<h4>{{job.title}} <span class="part-time">{{job.type}}</span></h4>
+							<div class="job-icons">
+								<span><i class="fa fa-briefcase"></i> {{job.company_name}}</span>
+								<span><i class="fa fa-map-marker"></i> {{job.district}}</span>
+								<span><i class="fa fa-money"></i> Good</span>
+							</div>
+							</div>
+            			</a>
+						<div class="clearfix"></div>
+
+					</li>
+				</div>
+
+			</ul>
+			<div class="clearfix"></div>
+
+			<div class="pagination-container">
+				<nav class="pagination">
+					<ul>
+						<li style="margin-left:5px;" (click)="changePage(i)" *ngFor="let page of numOfPages; let i = index"><a id="pagination{{i}}">{{i+1}}</a></li>
+					</ul>
+				</nav>
+
+				<nav class="pagination-next-prev">
+					<ul>
+						<!-- <li><a href="#" class="prev">Previous</a></li>
+						<li><a href="#" class="next">Next</a></li> -->
+					</ul>
+				</nav>
+			</div>
+
+		</div>
+	</div>
+
+
+	<!-- Widgets -->
+	<div class="five columns">
+
+		<!-- Sort by -->
+		<div class="widget">
+			<h4>Interesting</h4>
+
+			Find your desire job.
+
+		</div>
+
+	</div>
+	<!-- Widgets / End -->
+
+
+</div>

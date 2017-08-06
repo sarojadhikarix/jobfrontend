@@ -18,8 +18,23 @@ export class JobService {
             .map(res => res.json().data);
     }
 
-    public add(job){
+    public getJob(id) {
+        return this.http.get(environment.apiRoute + 'jobs/' + id)
+            .map(res => res.json().data)
+    }
+
+    public add(job) {
         return this.http.post(environment.apiRoute + 'jobs', job)
+            .map(res => res.json().data);
+    }
+
+    public getJobsSortBy(sortby) {
+        return this.http.get(environment.apiRoute + 'jobs/sort-by/' + sortby)
+            .map(res => res.json().data);
+    }
+
+    public searchJobs(data) {
+        return this.http.post(environment.apiRoute + 'search', data)
             .map(res => res.json().data);
     }
 }
