@@ -22,7 +22,7 @@ export class BrowseJobsComponent implements OnInit {
   public search: Search = new Search;
   public numOfPages: number[];
   public sliceStart: number = 0;
-  public sliceEnd: number = 5;
+  public sliceEnd: number = 4;
   public page: number;
   constructor(
     private route: ActivatedRoute,
@@ -91,8 +91,8 @@ export class BrowseJobsComponent implements OnInit {
   }
 
   public changePage(i) {
-    this.sliceStart = i * 5;
-    this.sliceEnd = this.sliceStart + 5;
+    this.sliceStart = i * 4;
+    this.sliceEnd = this.sliceStart + 4;
     for(let x=0;x<=this.page;x++){
       if(i==x){
         document.getElementById('pagination'+ i).className += " current-page";

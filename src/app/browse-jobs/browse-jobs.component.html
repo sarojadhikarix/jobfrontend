@@ -2,7 +2,7 @@
 <!-- Titlebar
 ================================================== -->
 <div id="titlebar">
-	<div class="container">
+	<div class="container sixteen columns">
 		<div class="ten columns">
 
 			<h2 *ngIf="type == 'category'">{{categorytype}}</h2>
@@ -21,14 +21,14 @@
 
 
 <!-- Content
-================================================== -->
+===================================================== -->
 <div class="container">
 	<div class="eleven columns">
 		<div class="search-container" style="padding:0px 0px 30px 0px !important;">
 			<!-- Form -->
-			<input type="text" style="border:1px solid;" class="ico-01" [(ngModel)]="search.keyword" placeholder="job title, keywords or company name"
+			<input type="text" style="border:1px solid;" class="ico-01" [(ngModel)]="search.keyword" placeholder="Keywords"
 			 value="" />
-			<input type="text" style="border:1px solid;" class="ico-02" [(ngModel)]="search.location" placeholder="city, province or region"
+			<input type="text" style="border:1px solid;" class="ico-02" [(ngModel)]="search.location" placeholder="Location"
 			 value="" />
 			<button (click)="searchJobs()"><i class="fa fa-search"></i></button>
 		</div>

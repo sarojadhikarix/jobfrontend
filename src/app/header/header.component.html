@@ -1,3 +1,4 @@
+
 <!-- Header
 ================================================== -->
 <header class="transparent sticky-header full-width">
@@ -15,30 +16,34 @@
 
           <li><a routerLink="/" id="current">Home</a></li>
 
-          <li><a href="#">Pages</a>
+					<li *ngIf="role_id"><a href="#">Pages <i class="ln ln-icon-Arrow-Down"></i></a>
+						<ul>
+							<li><a routerLink="/browse-jobs">Browse Jobs</a></li>
+							<li><a routerLink="/browse-categories">Browse Categories</a></li>
+							<!--<li><a href="pricing-tables.html">Pricing Tables</a></li>-->
+							<li><a routerLink="/contact">Contact</a></li>
+						</ul>
+					</li>
+					<li *ngIf="!role_id"><a routerLink="/browse-jobs">Browse Jobs</a></li>
+					<li *ngIf="!role_id"><a routerLink="/browse-categories">Browse Categories</a></li>
+					<!--<li><a href="pricing-tables.html">Pricing Tables</a></li>-->
+					<li *ngIf="!role_id"><a routerLink="/contact">Contact</a></li>
+
+          <li *ngIf="role_id == 1"><a href="#">For Candidates <i class="ln ln-icon-Arrow-Down"></i></a>
             <ul>
-              <li><a routerLink="/browse-jobs">Browse Jobs</a></li>
-              <li><a routerLink="/browse-categories">Browse Categories</a></li>
-              <!--<li><a href="pricing-tables.html">Pricing Tables</a></li>-->
-              <li><a routerLink="/contact">Contact</a></li>
+              <li><a routerLink="/resume-page">Resume Page</a></li>
+              <li><a routerLink="/add-resume">Add Resume</a></li>
+              <li><a routerLink="/manage-resume">Manage Resumes</a></li>
+              <li><a routerLink="/job-alerts">Job Alerts</a></li>
             </ul>
           </li>
 
-          <li><a href="#">For Candidates</a>
+          <li *ngIf="role_id == 2"><a href="#">For Employers <i class="ln ln-icon-Arrow-Down"></i></a>
             <ul>
-              <li><a href="resume-page.html">Resume Page</a></li>
-              <li><a href="add-resume.html">Add Resume</a></li>
-              <li><a href="manage-resumes.html">Manage Resumes</a></li>
-              <li><a href="job-alerts.html">Job Alerts</a></li>
-            </ul>
-          </li>
-
-          <li><a href="#">For Employers</a>
-            <ul>
-              <li><a routerLink="/add-job">Add Job</a></li>
-              <li><a href="manage-jobs.html">Manage Jobs</a></li>
-              <li><a href="manage-applications.html">Manage Applications</a></li>
-              <li><a href="browse-resumes.html">Browse Resumes</a></li>
+							<li><a routerLink="/add-job">Add Job</a></li>
+							<li><a routerLink="/manage-jobs">Manage Jobs</a></li>
+							<li><a routerLink="/manage-application">Manage Applications</a></li>
+							<li><a routerLink="/browse-resume">Browse Resumes</a></li>
             </ul>
           </li>
           <li><a href="blog.html">Blog</a></li>

@@ -76,6 +76,7 @@ export class LoginComponent implements OnInit {
     this.userService.getUserInfo().subscribe(
       data => {
         this.userService.setUserName(data.name);
+        this.userService.setRoleId(data.role_id);
         error => this.error = error.json().error;
       }
     );
@@ -88,4 +89,6 @@ export class LoginComponent implements OnInit {
   public reset() {
     this.error = '';
   }
+
+
 }

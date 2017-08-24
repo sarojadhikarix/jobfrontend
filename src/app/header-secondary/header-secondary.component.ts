@@ -16,7 +16,7 @@ export class HeaderSecondaryComponent implements OnInit {
 
   username: string = '';
   error: string = '';
-
+  role_id: string = '';
   constructor(
     private jsService: CustomJavascriptService,
     private app: AppComponent,
@@ -27,6 +27,7 @@ export class HeaderSecondaryComponent implements OnInit {
     $('body').customJquery();
     if (this.app.isLoggedIn == true) {
       this.username = localStorage.getItem('username');
+      this.role_id = localStorage.getItem('role_id');
     } else if (this.app.isLoggedIn == false) {
       if (localStorage.getItem('authToken') != '') {
         this.app.isLoggedIn = true;

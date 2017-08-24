@@ -19,6 +19,13 @@ import { CategoryComponent } from './category/category.component';
 import { BrowseCategoriesComponent } from './browse-categories/browse-categories.component';
 import { BrowseJobsComponent } from './browse-jobs/browse-jobs.component';
 import { ContactComponent } from './contact/contact.component';
+import { AddResumeComponent } from './add-resume/add-resume.component';
+import { ResumePageComponent } from './resume-page/resume-page.component';
+import { ManageResumeComponent } from './manage-resume/manage-resume.component';
+import { JobAlertsComponent } from './job-alerts/job-alerts.component';
+import { ManageJobsComponent } from './manage-jobs/manage-jobs.component';
+import { ManageApplicationsComponent } from './manage-applications/manage-applications.component';
+import { BrowseResumeComponent } from './browse-resume/browse-resume.component';
 
 export function httpClientFactory(backend: XHRBackend, defaultOptions: RequestOptions) {
   return new HttpClient(backend, defaultOptions);
@@ -43,7 +50,14 @@ const routes: Routes = [
   { path: 'add-job', component: AddJobComponent },
   { path: 'browse-categories', component: BrowseCategoriesComponent },
   { path: 'browse-jobs', component: BrowseJobsComponent },
-    { path: 'contact', component: ContactComponent },
+  { path: 'contact', component: ContactComponent },
+  {path: 'add-resume', component: AddResumeComponent},
+  {path: 'resume-page', component: ResumePageComponent},
+  {path: 'manage-resume', component: ManageResumeComponent},
+  {path: 'job-alerts', component: JobAlertsComponent},
+  {path: 'manage-jobs', component: ManageJobsComponent},
+  {path: 'manage-application', component: ManageApplicationsComponent},
+  {path: 'browse-resume', component: BrowseResumeComponent},
   { path: '404', component: ErrorpageComponent },
   { path: '**', redirectTo: '/404', pathMatch: 'full' }
 ];
@@ -63,7 +77,14 @@ const routes: Routes = [
     BrowseCategoriesComponent,
     TruncatePipe,
     BrowseJobsComponent,
-    ContactComponent
+    ContactComponent,
+    AddResumeComponent,
+    ResumePageComponent,
+    ManageResumeComponent,
+    JobAlertsComponent,
+    ManageJobsComponent,
+    ManageApplicationsComponent,
+    BrowseResumeComponent
   ],
   imports: [
     BrowserModule,

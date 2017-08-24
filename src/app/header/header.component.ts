@@ -15,6 +15,7 @@ declare var $: any;
 export class HeaderComponent implements OnInit {
 
   username: any;
+  role_id: string = '';
   error: string = '';
   constructor(
     private jsService: CustomJavascriptService,
@@ -25,6 +26,7 @@ export class HeaderComponent implements OnInit {
     $('body').customJquery();
     if (this.app.isLoggedIn == true) {
       this.username = localStorage.getItem('username');
+      this.role_id = localStorage.getItem('role_id');
     } else if (this.app.isLoggedIn == false) {
       if (localStorage.getItem('authToken') != '') {
         this.app.isLoggedIn = true;

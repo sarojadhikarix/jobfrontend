@@ -16,6 +16,10 @@ export class HttpClient extends Http {
         localStorage.setItem('username', username);
     }
     
+    setRoleId(id: string){
+      localStorage.setItem('role_id', id);
+    }
+    
     public deleteWithBody(url: string, data) {
       let options = new RequestOptions({ 
         body: data,

@@ -32,6 +32,7 @@ export class UserService {
         this.app.isLoggedIn = false;
         this.setAccessToken('');
         this.setUserName('');
+        this.setRoleId('');
         this.router.navigateByUrl('/');
     }
 
@@ -52,6 +53,10 @@ export class UserService {
 
     setUserName(username: string): void {
         this.http.setUserName(username);
+    }
+
+    setRoleId(id: string){
+        this.http.setRoleId(id);
     }
 
     public getUserInfo() {

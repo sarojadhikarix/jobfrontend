@@ -59,13 +59,14 @@
 					<p class="form-row">
 						<input type="submit" (click)="login()" class="button border fw margin-top-10" name="login" value="Login" />
 
-						<label for="rememberme" class="rememberme">
+						<!-- <label for="rememberme" class="rememberme">
 						<input name="rememberme" type="checkbox" id="rememberme" value="forever" /> Remember Me</label>
+					 -->
 					</p>
 
-					<p class="lost_password">
+					<!-- <p class="lost_password">
 						<a href="#">Lost Your Password?</a>
-					</p>
+					</p> -->
 
 				</form>
 			</div>
@@ -77,11 +78,28 @@
 
 					<p class="form-row form-row-wide">
 						<label *ngIf="registererror?.name" style="color:red;">*{{registererror?.name[0]}}</label>
-						<label for="username2">Company Name:
+						<label for="username2">Name:
 						<i class="ln ln-icon-Male"></i>
 						<input type="text" class="input-text" name="username" id="username2" [(ngModel)]="register.name" />
 					
 					</label>
+					</p>
+
+					<!-- Job Type -->
+					<p class="form-row form-row-wide">
+						<label *ngIf="registererror?.role_id" style="color:red;">*{{registererror?.role_id[0]}}</label>
+						<label for="username2">Looking For:
+						 <select style="height:50px;" [(ngModel)]="register.role_id" [ngModelOptions]="{standalone: true}">
+							<option selected="selected" [value]="1">Job</option>
+							<option [value]="2">Employee</option>
+						</select> 
+						<!-- <select id="roletype" (change)="changeRole()" data-placeholder="Job" class="chosen-select-no-single">
+							<option value="1">Job</option>
+							<option value="2">Employee</option>
+						</select> -->
+					
+					</label>
+
 					</p>
 
 					<p class="form-row form-row-wide">
