@@ -69,7 +69,6 @@ export class LoginComponent implements OnInit {
     // this.app.userPartyId = data.PARTY_ID;
     this.app.isLoggedIn = true;
     this.getUserInfo();
-    this.router.navigateByUrl('/add-job');
   }
 
   public getUserInfo() {
@@ -78,8 +77,14 @@ export class LoginComponent implements OnInit {
         this.userService.setUserName(data.name);
         this.userService.setRoleId(data.role_id);
         error => this.error = error.json().error;
+    this.navigateuser();
       }
     );
+  }
+
+  public navigateuser(){
+
+    this.router.navigateByUrl('/add-job');
   }
 
   private handleError(error: any) {

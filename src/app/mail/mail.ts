@@ -1,5 +1,6 @@
 export class Mail {
             name : string = '';
-            email : string = '';
+            byemail : string = '';
+            toemail : string = '';
             message : string = '';
 }

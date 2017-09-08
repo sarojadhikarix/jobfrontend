@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpModule, XHRBackend, RequestOptions, BaseRequestOptions, Headers, RequestOptionsArgs } from '@angular/http';
 import { HttpClient } from './HttpClient';
 import {  TruncatePipe }   from './pipes/limit/limitto';
+import { PdfViewerComponent } from 'ng2-pdf-viewer';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -39,7 +40,6 @@ export class DefaultRequestOptions extends BaseRequestOptions {
     newOptions.headers.set('Authorization', localStorage.getItem('authToken'));
     //newOptions.headers.set('Accept', 'application/json');
     newOptions.headers.set('Content-Type', 'application/json');
-
     return newOptions;
   }
 }
@@ -84,7 +84,8 @@ const routes: Routes = [
     JobAlertsComponent,
     ManageJobsComponent,
     ManageApplicationsComponent,
-    BrowseResumeComponent
+    BrowseResumeComponent,
+    PdfViewerComponent
   ],
   imports: [
     BrowserModule,

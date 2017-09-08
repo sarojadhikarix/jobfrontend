@@ -16,7 +16,7 @@
 
 					<li><a routerLink="/" id="current">Home</a></li>
 
-					<li *ngIf="role_id"><a href="#">Pages <i class="ln ln-icon-Arrow-Down"></i></a>
+					<li *ngIf="role_id"><a>Pages <i class="ln ln-icon-Arrow-Down"></i></a>
 						<ul>
 							<li><a routerLink="/browse-jobs">Browse Jobs</a></li>
 							<li><a routerLink="/browse-categories">Browse Categories</a></li>
@@ -29,7 +29,7 @@
 					<!--<li><a href="pricing-tables.html">Pricing Tables</a></li>-->
 					<li *ngIf="!role_id"><a routerLink="/contact">Contact</a></li>
 
-					<li *ngIf="role_id == 1"><a href="#">For Candidates <i class="ln ln-icon-Arrow-Down"></i></a>
+					<li *ngIf="role_id == 1"><a>For Candidates <i class="ln ln-icon-Arrow-Down"></i></a>
 						<ul>
 							<li><a routerLink="/resume-page">Resume Page</a></li>
 							<li><a routerLink="/add-resume">Add Resume</a></li>
@@ -38,7 +38,7 @@
 						</ul>
 					</li>
 
-					<li *ngIf="role_id == 2"><a href="#">For Employers <i class="ln ln-icon-Arrow-Down"></i></a>
+					<li *ngIf="role_id == 2"><a>For Employers <i class="ln ln-icon-Arrow-Down"></i></a>
 						<ul>
 							<li><a routerLink="/add-job">Add Job</a></li>
 							<li><a routerLink="/manage-jobs">Manage Jobs</a></li>

@@ -30,6 +30,7 @@ export class ContactComponent implements OnInit {
   public sendMail(){
     this.success = null;
     this.error = null;
+    this.mail.toemail = "creative@hopnep.com";
     this.mailservice.send(this.mail).subscribe(
       data =>{
         this.success = data.success;

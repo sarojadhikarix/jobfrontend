@@ -11,7 +11,6 @@
   </div>
 </div>
 
-
 <!-- Content
 ================================================== -->
 <div class="container">
@@ -23,25 +22,25 @@
       <!-- Email -->
       <div class="form">
         <h5>Your Name</h5>
-        <input class="search-field" type="text" placeholder="Your full name" value="" />
+        <input class="search-field" [(ngModel)]="userInfo.name" type="text" placeholder="Your full name" value="" />
       </div>
 
       <!-- Email -->
       <div class="form">
         <h5>Your Email</h5>
-        <input class="search-field" type="text" placeholder="mail@example.com" value="" />
+        <input class="search-field" [(ngModel)]="userInfo.email" type="text" placeholder="mail@example.com" value="" />
       </div>
 
       <!-- Title -->
       <div class="form">
-        <h5>Professional Title</h5>
-        <input class="search-field" type="text" placeholder="e.g. Web Developer" value="" />
+        <h5>Professional Title<label *ngIf="cverror?.professional_title" style="color:red;">*{{cverror?.professional_title[0]}}</label></h5>
+        <input class="search-field" [(ngModel)]="cv.professional_title" type="text" placeholder="e.g. Web Developer" value="" />
       </div>
 
       <!-- Location -->
       <div class="form">
-        <h5>Location</h5>
-        <input class="search-field" type="text" placeholder="e.g. London, UK" value="" />
+        <h5>Location<label *ngIf="cverror?.address" style="color:red;">*{{cverror?.address[0]}}</label></h5>
+        <input class="search-field" [(ngModel)]="cv.address" type="text" placeholder="e.g. London, UK" value="" />
       </div>
 
       <!-- Skills -->
@@ -49,42 +48,53 @@
         <p> Skills you have seperated by comma.</p>
       </div>
       <div class="form">
-        <h5>Skills</h5>
-        <input class="search-field" type="text" placeholder="e.g. HTML, Java" value="" />
+        <h5>Skills<label *ngIf="cverror?.skills" style="color:red;">*{{cverror?.skills[0]}}</label></h5>
+        <input class="search-field" [(ngModel)]="cv.skills" type="text" placeholder="e.g. HTML, Java" value="" />
       </div>
 
       <!-- Logo -->
-      <div class="form">
+      <!-- <div class="form">
         <h5>Photo <span>(optional)</span></h5>
         <label class="upload-btn">
 				    <input type="file" multiple />
 				    <i class="fa fa-upload"></i> Browse
 				</label>
         <span class="fake-input">No file selected</span>
-      </div>
+      </div> -->
 
 
       <!-- Description -->
       <div class="form">
-        <h5>Wish:</h5>
-        <textarea class="WYSIWYG" name="summary" cols="40" rows="3" id="summary" spellcheck="true"></textarea>
+        <h5>About and Wish:  <i>Maxmimum: 1300 characters</i></h5>
+        <label *ngIf="cverror?.wish" style="color:red;">*{{cverror?.wish[0]}}</label>
+        <textarea [(ngModel)]="cv.wish" class="WYSIWYG" name="summary" cols="40" rows="3" id="summary" spellcheck="true"></textarea>
       </div>
 
       <!-- cv -->
+      <div *ngIf="error || cvfileerror || cverror?.cv_link" class="notification error closeable">
+        <p><span>Error!</span> {{error}} {{cvfileerror}} {{cverror?.cv_link[0]}}</p>
+        <a class="close" href="#"></a>
+      </div>
+
+      <div *ngIf="success" class="notification success closeable">
+        <p><span>Success!</span> {{success}}</p>
+        <a class="close" href="#"></a>
+      </div>
+
       <div class="form">
         <h5>CV <span></span></h5>
         <label class="upload-btn">
-				    <input type="file" multiple />
+				    <input id="cvfileinput" (change)="fileChangeEvent($event)" type="file" />
 				    <i class="fa fa-upload"></i> Browse
 				</label>
-        <span class="fake-input">No file selected</span>
+        <span class="fake-input"><span *ngIf="cvfilename">{{cvfilename}}</span><span *ngIf="!cvfilename">No file selected.</span></span>
       </div>
 
 
 
 
       <div class="divider margin-top-0 padding-reset"></div>
-      <a href="#" class="button big margin-top-5">ADD <i class="fa fa-arrow-circle-right"></i></a>
+      <a (click)="add()" class="button big margin-top-5">ADD <i class="fa fa-arrow-circle-right"></i></a>
 
     </div>
   </div>
