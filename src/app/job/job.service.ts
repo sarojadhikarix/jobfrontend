@@ -35,6 +35,11 @@ export class JobService {
 
     public searchJobs(data) {
         return this.http.post(environment.apiRoute + 'search', data)
-            .map(res => res.json().data);
+            .map(res => res.json().data)
+            .catch(this.handleError);
+    }
+
+    private handleError(error: any): Promise<any> {
+        return Promise.reject(error.json());
     }
 }

@@ -56,9 +56,12 @@
 					<li *ngIf="username">
 						<a>{{username}}</a>
 						<ul>
+							<li><a routerLink="/user-account">Account</a></li>
 							<li><a (click)="logout()">LogOut</a></li>
 						</ul>
+						
 					</li>
+					<li style="position:relative;"><span style="position:absolute; overflow:visible; font-size:7; top:-7px; right:-7px; border-radius:7px; background:red; z-index: 1; color:white; padding:2px;">{{matching_jobs}}</span><a routerLink="/job-alerts"><i class="ln ln-icon-Worker"></i></a></li>
 				</ul>
 
 			</nav>

@@ -58,7 +58,7 @@ export class BrowseJobsComponent implements OnInit {
       data => {
         this.jobs = data.jobs.data;
         this.count = data.jobs.data.length;
-        this.page = Math.ceil(this.count / 5);
+        this.page = Math.ceil(this.count / 4);
         this.numOfPages = new Array(this.page);
         this.categorytype = data.name;
       }
@@ -70,7 +70,7 @@ export class BrowseJobsComponent implements OnInit {
       data => {
         this.jobs = data;
         this.count = data.length;
-        this.page = Math.ceil(this.count / 5);
+        this.page = Math.ceil(this.count / 4);
         this.numOfPages = new Array(this.page);
       }
     );
@@ -83,7 +83,7 @@ export class BrowseJobsComponent implements OnInit {
       data => {
         this.jobs = data;
         this.count = data.length;
-        this.page = Math.ceil(this.count / 5);
+        this.page = Math.ceil(this.count / 4);
         this.numOfPages = new Array(this.page);
       }
     );

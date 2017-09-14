@@ -27,6 +27,7 @@ import { JobAlertsComponent } from './job-alerts/job-alerts.component';
 import { ManageJobsComponent } from './manage-jobs/manage-jobs.component';
 import { ManageApplicationsComponent } from './manage-applications/manage-applications.component';
 import { BrowseResumeComponent } from './browse-resume/browse-resume.component';
+import { UserAccountComponent } from './user-account/user-account.component';
 
 export function httpClientFactory(backend: XHRBackend, defaultOptions: RequestOptions) {
   return new HttpClient(backend, defaultOptions);
@@ -59,6 +60,7 @@ const routes: Routes = [
   {path: 'manage-application', component: ManageApplicationsComponent},
   {path: 'browse-resume', component: BrowseResumeComponent},
   { path: '404', component: ErrorpageComponent },
+  { path: 'user-account', component:UserAccountComponent},
   { path: '**', redirectTo: '/404', pathMatch: 'full' }
 ];
 
@@ -85,7 +87,8 @@ const routes: Routes = [
     ManageJobsComponent,
     ManageApplicationsComponent,
     BrowseResumeComponent,
-    PdfViewerComponent
+    PdfViewerComponent,
+    UserAccountComponent
   ],
   imports: [
     BrowserModule,

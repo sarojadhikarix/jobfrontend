@@ -22,7 +22,7 @@
 <!-- Content
 ================================================== -->
 <div class="container">
-	
+
 	<!-- Table -->
 	<div class="sixteen columns">
 
@@ -39,11 +39,11 @@
 			</tr>
 
 			<!-- Item #1 -->
-			<tr>
-				<td class="title"><a href="#">John Doe</a></td>
-				<td>Front End Web Developer</td>
-				<td>New York</td>
-				<td>September 30, 2015</td>
+			<tr *ngIf="cv.status != 'not_found'">
+				<td class="title"><a href="#">{{userInfo.name}}{{cv.status}}</a></td>
+				<td>{{cv.professional_title | limitTo:20}}</td>
+				<td>{{cv.address | limitTo:20}}</td>
+				<td>{{cv.updated_at?.date | date:'mediumDate'}}</td>
 				<td class="action">
 					<a href="#"><i class="fa fa-pencil"></i> Edit</a>
 					<a href="#"><i class="fa  fa-eye-slash"></i> Hide</a>
@@ -51,24 +51,16 @@
 				</td>
 			</tr>
 
-			<!-- Item #1 -->
-			<tr>
-				<td class="title"><a href="#">John Doe</a></td>
-				<td>Logo Designer</td>
-				<td>New York</td>
-				<td>August 12, 2015</td>
-				<td class="action">
-					<a href="#"><i class="fa fa-pencil"></i> Edit</a>
-					<a href="#"><i class="fa  fa-eye-slash"></i> Hide</a>
-					<a href="#" class="delete"><i class="fa fa-remove"></i> Delete</a>
-				</td>
-			</tr>	
-
 		</table>
-
+		<br>
+		<!-- cv -->
+		<div *ngIf="cv.status == 'not_found'" class="notification error closeable">
+			<p><span>Oops!</span> You have not added your CV. Go to Add Resume, More chances to get hired.</p>
+			<a class="close" href="#"></a>
+		</div>
 		<br>
 
-		<a href="#" class="button">Add Resume</a>
+		<a *ngIf="cv.status == 'not_found'" routerLink="/add-resume" class="button">Add Resume</a>
 
 	</div>
 

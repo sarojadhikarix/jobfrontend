@@ -50,7 +50,6 @@ export class AddResumeComponent implements OnInit {
     this.cv.cv_link = this.returnedcvfilename;
       this.cvService.addCV(this.cv).subscribe(
         data => {
-          console.log(data);
           confirm(data.message);
         },
         error => this.handleError(error)
@@ -91,7 +90,7 @@ export class AddResumeComponent implements OnInit {
       this.cverror = error;
       if(error.user_id){
         if (confirm("CV already exists. Go to update or delete sections for the changes.")) {
-          this.router.navigateByUrl('/add-job');
+          this.router.navigateByUrl('/manage-resume');
         }
       }
     }

@@ -3,6 +3,7 @@ import { CustomJavascriptService } from './../custom/custom-javascript.service';
 import { AppComponent } from './../app.component';
 import { UserService } from './../user/user.service';
 
+
 declare var $: any;
 
 @Component({
@@ -17,6 +18,8 @@ export class HeaderSecondaryComponent implements OnInit {
   username: string = '';
   error: string = '';
   role_id: string = '';
+  matching_jobs: string = '';
+
   constructor(
     private jsService: CustomJavascriptService,
     private app: AppComponent,
@@ -34,8 +37,8 @@ export class HeaderSecondaryComponent implements OnInit {
     } else {
       this.username = localStorage.getItem('username');
       this.role_id = localStorage.getItem('role_id');
-
     }
+    this.matching_jobs = localStorage.getItem('matching_jobs');
   }
 
   public logout() {

@@ -15,6 +15,10 @@
 			</nav>
 		</div>
 
+		<div class="ten columns">
+			<span *ngIf="count != 0">We have {{count}} jobs matching according to your resume:</span>
+		</div>
+
 	</div>
 </div>
 
@@ -22,7 +26,7 @@
 <!-- Content
 ================================================== -->
 <div class="container">
-	
+
 	<!-- Table -->
 	<div class="sixteen columns">
 
@@ -32,49 +36,65 @@
 
 			<tr>
 				<th><i class="fa fa-file-text"></i> Alert Name</th>
-				<th><i class="fa fa-calendar"></i> Date Created</th>
+				<th><i class="fa fa-calendar"></i> Created Date</th>
 				<th><i class="fa fa-tags"></i> Keywords</th>
 				<th><i class="fa fa-map-marker"></i> Location</th>
-				<th><i class="fa fa-clock-o"></i> Frequency</th>
+				<th><i class="fa fa-clock-o"></i> Deadline</th>
 				<th><i class="fa fa-check-square-o"></i> Status</th>
 				<th></th>
 			</tr>
 
 			<!-- Item #1 -->
-			<tr>
-				<td class="alert-name">Looking for job</td>
-				<td>September 30, 2015</td>
-				<td class="keywords">Web Developer, PHP, HTML</td>
-				<td>London</td>
-				<td>Daily</td>
-				<td>Enabled</td>
+			<tr routerLink="/job/{{job.id}}" style="cursor: pointer; cursor: hand;" *ngFor="let job of jobs | slice:sliceStart:sliceEnd; let j =index">
+				<td class="alert-name">{{job.title | limitTo:40}}</td>
+				<td>{{job.created_at.date | date:'mediumDate'}}</td>
+				<td class="keywords">{{job.keywords | limitTo:30}}</td>
+				<td>{{job.district | limitTo:20}}</td>
+				<td>{{job.finish | date:'mediumDate'}}</td>
+				<td><span *ngIf="job.status == 1">Enabled</span><span *ngIf="job.status == 0">Disabled</span></td>
 				<td class="action">
-					<a href="#"><i class="fa fa-check-circle-o"></i> Show Results</a>
-					<a href="#"><i class="fa fa-envelope"></i> Email</a>
-					<a href="#"><i class="fa fa-pencil"></i> Edit</a>
-					<a href="#"><i class="fa  fa-eye-slash"></i> Disable</a>
-					<a href="#" class="delete"><i class="fa fa-remove"></i> Delete</a>
+					<a class="button" style="color:white; padding:10px;">See Details</a>
 				</td>
 			</tr>
-
 		</table>
+		<br>
+		<div *ngIf="error != ''" class="notification error closeable">
+			<p><span>Oops!</span> {{error}}</p>
+			<a class="close" href="#"></a>
+		</div>
 
 		<br>
+		<div class="clearfix"></div>
 
-		<a href="#small-dialog" class="popup-with-zoom-anim button">Add Alert</a>
+		<div class="pagination-container">
+			<nav class="pagination">
+				<ul>
+					<li style="margin-left:5px;" (click)="changePage(i)" *ngFor="let page of numOfPages; let i = index"><a id="pagination{{i}}">{{i+1}}</a></li>
+				</ul>
+			</nav>
 
-		<div id="small-dialog" class="zoom-anim-dialog mfp-hide apply-popup">
+			<nav class="pagination-next-prev">
+				<ul>
+					<!-- <li><a href="#" class="prev">Previous</a></li>
+						<li><a href="#" class="next">Next</a></li> -->
+				</ul>
+			</nav>
+		</div>
+
+		<!-- <div id="small-dialog" class="zoom-anim-dialog mfp-hide apply-popup">
 			<div class="small-dialog-headline">
 				<h2>Add Alert</h2>
 			</div>
 
 			<div class="small-dialog-content">
-				<form action="#" method="get" >
-					<input type="text" placeholder="Alert Name" value=""/>
-					<input type="text" placeholder="Keyword" value=""/>
-					<input type="text" placeholder="Location" value=""/>
+				<form action="#" method="get">
+					<input type="text" placeholder="Alert Name" value="" />
+					<input type="text" placeholder="Keyword" value="" />
+					<input type="text" placeholder="Location" value="" />
 
 					<!-- Select -->
+
+		<!--
 					<select data-placeholder="Email Frequency" class="chosen-select-no-single">
 						<option value="">Email Frequency</option>
 						<option value="1">Daily</option>
@@ -86,6 +106,8 @@
 					<div class="margin-top-15"></div>
 
 					<!-- Select -->
+
+		<!--
 					<select data-placeholder="Job Type" class="chosen-select" multiple>
 						<option value="1">Full-Time</option>
 						<option value="2">Part-Time</option>
@@ -100,7 +122,7 @@
 					<button class="send">Save Alert</button>
 				</form>
 			</div>
-		</div>
+		</div> -->
 	</div>
 
 </div>

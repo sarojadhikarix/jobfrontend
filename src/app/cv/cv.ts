@@ -6,5 +6,5 @@ export class CV {
     public skills: string = '';
     public wish: string = '';
     public cv_link: string = '';
-    public status: number = 1;
+    public status: string = '';
 }
