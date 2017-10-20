@@ -1,10 +1,11 @@
+<app-header-secondary></app-header-secondary>
 <!-- Titlebar
 ================================================== -->
 <div id="titlebar" class="single submit-page">
 	<div class="container">
 
 		<div class="sixteen columns">
-			<h2><i class="fa fa-plus-circle"></i> Add Job</h2>
+			<h2><i class="fa fa-cog"></i>Account settings</h2>
 		</div>
 
 	</div>
@@ -14,74 +15,42 @@
 <!-- Content
 ================================================== -->
 <div class="container">
-	
+
 	<!-- Submit Page -->
 	<div class="sixteen columns">
 		<div class="submit-page">
 
-			<!-- Notice -->
-			<div class="notification notice closeable margin-bottom-40">
-				<p><span>Account settings..</span></p>
+			<!-- Title -->
+			<div class="form">
+				<h5>Name</h5>
+				<input class="search-field" [(ngModel)]="userInfo.name" type="text" placeholder="" readonly/>
 			</div>
 
 
 			<!-- Email -->
 			<div class="form">
-				<h5>Your Email</h5>
-				<input class="search-field" type="text" placeholder="mail@example.com" value=""/>
+				<h5>Email</h5>
+				<input class="search-field" [(ngModel)]="userInfo.email" type="text" placeholder="mail@example.com" readonly/>
 			</div>
 
-			<!-- Title -->
-			<div class="form">
-				<h5>Job Title</h5>
-				<input class="search-field" type="text" placeholder="" value=""/>
+			<!-- cv -->
+			<div *ngIf="error || propicfileerror || propicerror?.cv_link" class="notification error closeable">
+				<p><span>Error!</span> {{error}} {{propicfileerror}} {{propicerror?.propic[0]}}</p>
+				<a class="close" href="#"></a>
 			</div>
 
-			<!-- Location -->
-			<div class="form">
-				<h5>Location <span>(optional)</span></h5>
-				<input class="search-field" type="text" placeholder="e.g. London" value=""/>
-				<p class="note">Leave this blank if the location is not important</p>
+			<div *ngIf="success" class="notification success closeable">
+				<p><span>Success!</span> {{success}}</p>
+				<a class="close" href="#"></a>
 			</div>
 
-			<!-- Job Type -->
 			<div class="form">
-				<h5>Job Type</h5>
-				<select data-placeholder="Full-Time" class="chosen-select-no-single">
-					<option value="1">Full-Time</option>
-					<option value="2">Part-Time</option>
-					<option value="2">Internship</option>
-					<option value="2">Freelance</option>
-				</select>
-			</div>
-
-			<!-- Application email/url -->
-			<div class="form">
-				<h5>Application email / URL</h5>
-				<input type="text" placeholder="Enter an email address or website URL">
-			</div>
-
-			<!-- TClosing Date -->
-			<div class="form">
-				<h5>Closing Date <span>(optional)</span></h5>
-				<input data-role="date" type="text" placeholder="yyyy-mm-dd">
-				<p class="note">Deadline for new applicants.</p>
-			</div>
-
-			
-			<!-- Company Details -->
-			<div class="divider"><h3>Company Details</h3></div>
-
-			<!-- Company Name -->
-			<div class="form">
-				<h5>Company Name</h5>
-				<input type="text" placeholder="Enter the name of the company">
-			</div>
-
-			<!-- Website -->
-			<div class="form">
-				<h5>Website <span>(optional)</span></h5>
-				<input type="text" placeholder="http://">
+				<h5>Profile picture <span></span></h5>
+				<label class="upload-btn">
+				    <input id="propicfileinput" (change)="fileChangeEvent($event)" type="file" />
+				    <i class="fa fa-upload"></i> Upload New
+				</label>
+				<img src="{{picture_link}}" (error)="updateLink($event)" style="max-width:200px; max-height:200px; border-radius:20px;">
 			</div>
 		</div>
 	</div>

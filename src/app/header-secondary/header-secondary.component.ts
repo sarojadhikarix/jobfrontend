@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CustomJavascriptService } from './../custom/custom-javascript.service';
 import { AppComponent } from './../app.component';
 import { UserService } from './../user/user.service';
-
+import { environment } from './../../environments/environment';
 
 declare var $: any;
 
@@ -19,6 +19,8 @@ export class HeaderSecondaryComponent implements OnInit {
   error: string = '';
   role_id: string = '';
   matching_jobs: string = '';
+  picture_link:string = '';
+  picture_error: string = '';
 
   constructor(
     private jsService: CustomJavascriptService,
@@ -28,6 +30,9 @@ export class HeaderSecondaryComponent implements OnInit {
 
   ngOnInit() {
     $('body').customJquery();
+    
+    this.picture_link = environment.apiRoute + 'storage/propic/52_propic.png';
+    this.picture_error = environment.apiRoute + 'storage/propic/error.png';
     if (this.app.isLoggedIn == false) {
       if (localStorage.getItem('authToken') != '') {
         this.app.isLoggedIn = true;
@@ -43,5 +48,9 @@ export class HeaderSecondaryComponent implements OnInit {
 
   public logout() {
     this.userService.logout();
+  }
+
+  public updateLink(){
+    this.picture_link = environment.apiRoute + 'storage/propic/error.png';
   }
 }

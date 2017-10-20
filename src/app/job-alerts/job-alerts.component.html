@@ -69,7 +69,7 @@
 		<div class="pagination-container">
 			<nav class="pagination">
 				<ul>
-					<li style="margin-left:5px;" (click)="changePage(i)" *ngFor="let page of numOfPages; let i = index"><a id="pagination{{i}}">{{i+1}}</a></li>
+					<li style="margin-left:5px; cursor: pointer;" (click)="changePage(i)" *ngFor="let page of numOfPages; let i = index"><a id="pagination{{i}}">{{i+1}}</a></li>
 				</ul>
 			</nav>
 

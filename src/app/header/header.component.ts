@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CustomJavascriptService } from './../custom/custom-javascript.service';
 import { UserService } from './../user/user.service';
 import { AppComponent } from './../app.component';
-
-
+import { environment } from './../../environments/environment';
 declare var $: any;
 
 @Component({
@@ -11,7 +10,7 @@ declare var $: any;
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
   viewProviders: [CustomJavascriptService],
-  providers: [UserService]
+  providers: [ UserService]
 })
 export class HeaderComponent implements OnInit {
 
@@ -19,6 +18,9 @@ export class HeaderComponent implements OnInit {
   role_id: string = '';
   error: string = '';
   matching_jobs: string = '';
+  picture_link:string = '';
+  picture_error: string = '';
+
   constructor(
     private jsService: CustomJavascriptService,
     private userService: UserService,
@@ -26,6 +28,8 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     $('body').customJquery();
+    this.picture_link = environment.apiRoute + 'storage/propic/52_propic.png';
+    this.picture_error = environment.apiRoute + 'storage/propic/error.png';
     if (this.app.isLoggedIn == false) {
       if (localStorage.getItem('authToken') != '') {
         this.app.isLoggedIn = true;
@@ -40,9 +44,11 @@ export class HeaderComponent implements OnInit {
     this.matching_jobs = localStorage.getItem('matching_jobs');
   }
 
-
-
   public logout() {
     this.userService.logout();
+  }
+
+  public updateLink(){
+    this.picture_link = environment.apiRoute + 'storage/propic/error.png';
   }
 }

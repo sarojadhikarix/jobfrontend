@@ -42,17 +42,17 @@
               <p><span>Error!</span> {{ error }}</p>
               <a class="close" href="#"></a>
             </div>
-            <form action="#" method="get">
-              <input type="text" [(ngModel)]="mail.name" placeholder="Full Name" value="" />
-              <input type="text" [(ngModel)]="mail.byemail" placeholder="Email Address" value="" />
-              <textarea [(ngModel)]="mail.message" placeholder="Message"></textarea>
+            <form >
+              <input type="text" [(ngModel)]="mail.name" placeholder="Full Name" name="fullname"  />
+              <input type="text" [(ngModel)]="mail.byemail" placeholder="Email Address" name="sender"  />
+              <textarea [(ngModel)]="mail.message" placeholder="Message" name="message"></textarea>
 
               <button (click)="sendMail()" class="send">Send Application</button>
             </form>
           </div>
 
         </div>
-        <a href="#" class="button dark"><i class="fa fa-star"></i> Bookmark This Resume</a>
+        <a  class="button dark"><i class="fa fa-star"></i> Bookmark This Resume</a>
 
 
       </div>
@@ -86,9 +86,12 @@
     <h3 class="margin-bottom-20">Curriculum Vitae</h3>
 
     <!-- Resume Table -->
-    <pdf-viewer [src]="cvlink" [page]="page" [original-size]="true" style="display: block;"></pdf-viewer>
+     <pdf-viewer [src]="cvlink" [page]="page" [original-size]="true" style="display: block;"></pdf-viewer>
 
-    <embed src="{{cvlink}}" width="500" height="375" type='application/pdf'>
+    <!-- <embed src="{{cvlink}}" width="500" height="375" type='application/pdf'>  -->
+
+      <!-- <embed src="{{cvlink}}" width="500" height="375" type='application/pdf'> -->
+
   </div>
 
 </div>

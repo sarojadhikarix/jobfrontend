@@ -6,6 +6,7 @@ import { Register } from './register';
 import { HttpClient } from './../HttpClient';
 import { AppComponent } from './../app.component';
 import { Router } from '@angular/router';
+import { HttpModule, XHRBackend, RequestOptions, BaseRequestOptions, Headers, RequestOptionsArgs } from '@angular/http';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -55,7 +56,7 @@ export class UserService {
         this.http.setUserName(username);
     }
 
-    setRoleId(id: string){
+    setRoleId(id: string) {
         this.http.setRoleId(id);
     }
 
@@ -67,5 +68,20 @@ export class UserService {
 
     private handleError(error: any): Promise<any> {
         return Promise.reject(error.json());
+    }
+
+    addpropic(data: any) {
+        let headers = new Headers;
+        headers.delete('content-type');
+        headers.set('Authorization', localStorage.getItem('authToken'));
+        let options = new RequestOptions({ headers: headers });
+        return this.http.post(environment.apiRoute + 'propic/add', data, options)
+            .map(res => res.json())
+            .catch(this.handleError)
+    }
+
+    deleteCVfile(user_id) {
+        return this.http.delete(environment.apiRoute + 'propic/' + user_id)
+            .map(res => res.json());
     }
 }
