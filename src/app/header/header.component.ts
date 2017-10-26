@@ -3,6 +3,7 @@ import { CustomJavascriptService } from './../custom/custom-javascript.service';
 import { UserService } from './../user/user.service';
 import { AppComponent } from './../app.component';
 import { environment } from './../../environments/environment';
+import { UserInfo } from './../user/user';
 declare var $: any;
 
 @Component({
@@ -10,7 +11,7 @@ declare var $: any;
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
   viewProviders: [CustomJavascriptService],
-  providers: [ UserService]
+  providers: [UserService]
 })
 export class HeaderComponent implements OnInit {
 
@@ -18,8 +19,9 @@ export class HeaderComponent implements OnInit {
   role_id: string = '';
   error: string = '';
   matching_jobs: string = '';
-  picture_link:string = '';
+  picture_link: string = '';
   picture_error: string = '';
+  public userInfo: UserInfo = new UserInfo();
 
   constructor(
     private jsService: CustomJavascriptService,
@@ -28,27 +30,37 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     $('body').customJquery();
-    this.picture_link = environment.apiRoute + 'storage/propic/52_propic.png';
+    this.getUserInfo();
     this.picture_error = environment.apiRoute + 'storage/propic/error.png';
-    if (this.app.isLoggedIn == false) {
-      if (localStorage.getItem('authToken') != '') {
-        this.app.isLoggedIn = true;
-        this.username = localStorage.getItem('username');
-        this.role_id = localStorage.getItem('role_id');
-      }
-    } else {
-      this.username = localStorage.getItem('username');
-      this.role_id = localStorage.getItem('role_id');
-    }
-
     this.matching_jobs = localStorage.getItem('matching_jobs');
   }
 
   public logout() {
     this.userService.logout();
   }
+  public getUserInfo() {
+    this.userService.getUserInfo().subscribe(
+      data => {
+        this.checkAll(data);
+      }
+    );
+  }
 
-  public updateLink(){
+  public checkAll(data) {
+    if (this.app.isLoggedIn == false) {
+      if (localStorage.getItem('authToken') != '') {
+        this.app.isLoggedIn = true;
+        this.username = data.name;
+        this.role_id = data.role_id;
+        this.picture_link = environment.apiRoute + 'storage/propic/' + data.id + '_propic.png?' + new Date().getTime();
+      }
+    } else {
+      this.username = data.name;
+      this.role_id = data.role_id;
+    }
+  }
+  public updateLink() {
     this.picture_link = environment.apiRoute + 'storage/propic/error.png';
   }
+
 }

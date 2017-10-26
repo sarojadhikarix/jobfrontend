@@ -23,10 +23,10 @@
 							<li><a routerLink="/contact">Contact</a></li>
 						</ul>
 					</li>
-					<li *ngIf="!role_id"><a routerLink="/browse-jobs">Browse Jobs</a></li>
-					<li *ngIf="!role_id"><a routerLink="/browse-categories">Browse Categories</a></li>
+					<li *ngIf="app.isLoggedIn == false"><a routerLink="/browse-jobs">Browse Jobs</a></li>
+					<li *ngIf="app.isLoggedIn == false"><a routerLink="/browse-categories">Browse Categories</a></li>
 					<!--<li><a href="pricing-tables.html">Pricing Tables</a></li>-->
-					<li *ngIf="!role_id"><a routerLink="/contact">Contact</a></li>
+					<li *ngIf="app.isLoggedIn == false"><a routerLink="/contact">Contact</a></li>
 
 					<li *ngIf="role_id == 1"><a>For Candidates <i class="ln ln-icon-Arrow-Down"></i></a>
 						<ul>

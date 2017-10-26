@@ -29,7 +29,7 @@ export class UserAccountComponent implements OnInit {
 
   ngOnInit() {
     this.getUserInfo();
-    this.picture_link = environment.apiRoute + 'storage/propic/52_propic.png';
+    
     this.picture_error = environment.apiRoute + 'storage/propic/error.png';
   }
 
@@ -53,6 +53,7 @@ export class UserAccountComponent implements OnInit {
       data => {
         if (data.success) {
           this.success = data.success;
+          this.picture_link = environment.apiRoute + 'storage/propic/' + this.userInfo.id + '_propic.png?' + new Date().getTime();
         } else {
           this.error = data.error;
         }
@@ -73,6 +74,7 @@ export class UserAccountComponent implements OnInit {
     this.userService.getUserInfo().subscribe(
       data => {
         this.userInfo = data;
+        this.picture_link = environment.apiRoute + 'storage/propic/' + this.userInfo.id + '_propic.png?' + new Date().getTime();
       }
     );
   }
