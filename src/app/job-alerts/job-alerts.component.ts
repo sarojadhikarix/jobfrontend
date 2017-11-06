@@ -56,6 +56,7 @@ export class JobAlertsComponent implements OnInit {
       data => {
         if (data.status == 'not_found') {
           this.error = "You have not added your CV. Go to Add Resume, to get alerts of jobs.";
+          this.cv = data;
         } else {
           this.cv = data;
           this.search.keyword = data.skills;

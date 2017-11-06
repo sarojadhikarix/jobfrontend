@@ -51,6 +51,7 @@ export class AddResumeComponent implements OnInit {
       this.cvService.addCV(this.cv).subscribe(
         data => {
           confirm(data.message);
+          this.router.navigateByUrl('/manage-resume');
         },
         error => this.handleError(error)
       );

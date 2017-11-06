@@ -57,10 +57,11 @@ export class HeaderComponent implements OnInit {
     } else {
       this.username = data.name;
       this.role_id = data.role_id;
+      this.picture_link = environment.apiRoute + 'storage/propic/' + data.id + '_propic.png?' + new Date().getTime();
     }
   }
   public updateLink() {
-    this.picture_link = environment.apiRoute + 'storage/propic/error.png';
+    this.picture_link = this.picture_error;
   }
 
 }

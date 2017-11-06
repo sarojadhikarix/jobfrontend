@@ -77,14 +77,17 @@ export class LoginComponent implements OnInit {
         this.userService.setUserName(data.name);
         this.userService.setRoleId(data.role_id);
         error => this.error = error.json().error;
-    this.navigateuser();
+        this.navigateuser(data);
       }
     );
   }
 
-  public navigateuser(){
-
-    this.router.navigateByUrl('/add-job');
+  public navigateuser(data){
+    if(data.role_id == "1"){
+      this.router.navigateByUrl('/job-alerts');
+    }else if(data.role_id == "2"){
+      this.router.navigateByUrl('/manage-jobs');
+    }
   }
 
   private handleError(error: any) {

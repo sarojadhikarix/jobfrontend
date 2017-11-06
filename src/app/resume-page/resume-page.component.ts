@@ -20,8 +20,10 @@ export class ResumePageComponent implements OnInit {
   public cv: CV;
   public userInfo: UserInfo;
   public mail: Mail = new Mail();
-  public success:string;
-  public error:string;
+  public success: string;
+  public error: string;
+  picture_link: string = '';
+  picture_error: string = '';
   constructor(
     private cvService: CVservice,
     private userService: UserService,
@@ -30,14 +32,19 @@ export class ResumePageComponent implements OnInit {
 
   ngOnInit() {
     this.getUserInfo();
+    this.picture_error = environment.apiRoute + 'storage/propic/error.png';
+  }
 
+  public updateLink() {
+    this.picture_link = this.picture_error;
   }
 
   public getCV() {
     this.cvService.getCV(this.userInfo.id).subscribe(
       data => {
         this.cv = data;
-        this.cvlink = environment.apiRoute + 'storage/cv/52_cv.pdf'
+        this.cvlink = environment.apiRoute + 'storage/cv/'+ this.userInfo.id +'_cv.pdf';
+        this.picture_link = environment.apiRoute + 'storage/propic/' + this.userInfo.id + '_propic.png?' + new Date().getTime();
       }
     );
   }

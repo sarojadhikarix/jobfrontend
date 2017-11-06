@@ -18,6 +18,7 @@ export class ManageResumeComponent implements OnInit {
   public userInfo: UserInfo = new UserInfo();
   public success: string;
   public error: string;
+  public message: string;
   public count: number;
   router: Router;
 
@@ -30,7 +31,7 @@ export class ManageResumeComponent implements OnInit {
 
   ngOnInit() {
     this.getUserInfo();
-    
+
   }
 
   public getUserInfo() {
@@ -42,13 +43,23 @@ export class ManageResumeComponent implements OnInit {
     );
   }
 
-  public getCV(){
+  public getCV() {
     this.cvService.getCV(this.userInfo.id).subscribe(
       data => {
         this.cv = data;
         this.count = data.length;
       }
     );
+  }
+
+  public deleteCV() {
+    this.cvService.deleteCV(this.userInfo.id).subscribe(
+      data => {
+        
+      }
+      
+    );
+    this.getCV();
   }
 
 }
