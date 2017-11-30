@@ -41,10 +41,10 @@
 			</tr>
 
 			<!-- Item #2 -->
-			<tr *ngFor="let job of jobs | slice:sliceStart:sliceEnd; let j =index">
+			<tr routerLink="/job/{{job.id}}" style="cursor:pointer;" *ngFor="let job of jobs | slice:sliceStart:sliceEnd; let j =index">
 				<td class="title"><a href="#">{{ job.title }}</a></td>
 				<td class="centered">
-					<span *ngIf="job.status == 1"><i class="fa fa-check"></i></span><span *ngIf="job.status == 0"><i class="fa fa-times"></i></span></td>
+					<span *ngIf="job.filled == 1"><i class="fa fa-check"></i></span><span *ngIf="job.filled == 0"><i class="fa fa-times"></i></span></td>
 				<td>{{ job.created_at.date | date:'mediumDate' }}</td>
 				<td>{{ job.finish | date:'mediumDate' }}</td>
 				<td class="centered">
@@ -53,16 +53,16 @@
 				</td>
 				<td><span *ngIf="job.status == 0">Pending</span><span *ngIf="job.status == 1">Approved</span></td>
 				<td class="action">
-					<a href="#"><i class="fa fa-pencil"></i> Edit</a>
-					<a href="#"><i class="fa  fa-check "></i> Mark Filled</a>
-					<a href="#" class="delete"><i class="fa fa-remove"></i> Delete</a>
+					<a routerLink="/add-job/{{job.id}}"><i class="fa fa-pencil"></i> Edit</a>
+					<a *ngIf="job.filled == 0" (click)='markFilled(job.id)' style="cursor:pointer;"><i class="fa  fa-check "></i> Mark Filled</a>
+					<a *ngIf="job.filled == 1" (click)='markNotFilled(job.id)' style="cursor:pointer;"><i class="fa fa-times "></i> Mark Not Filled</a>
 				</td>
 			</tr>
 
 		</table>
 
 		<br>
-		<a routerLink="/add-job" class="button">Add Job</a>
+		<a routerLink="/add-job/add" class="button">Add Job</a>
 
 		<div class="pagination-container">
 			<nav class="pagination">

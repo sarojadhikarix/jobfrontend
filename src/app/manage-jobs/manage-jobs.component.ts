@@ -62,4 +62,43 @@ export class ManageJobsComponent implements OnInit {
     }
   }
 
+  markFilled(id) {
+    for (let i = 0; i <= this.jobs.length; i++) {
+      if (this.jobs[i].id == id) {
+        this.jobs[i].filled = true;
+        this.jobService.update(this.jobs[i]).subscribe(
+          data => {
+            this.success = data.message;
+            this.getJobsByUser();
+          },
+          error => this.handleError(error)
+        );
+      }
+    }
+  }
+
+  markNotFilled(id) {
+    for (let i = 0; i <= this.jobs.length; i++) {
+      if (this.jobs[i].id == id) {
+        this.jobs[i].filled = false;
+        this.jobService.update(this.jobs[i]).subscribe(
+          data => {
+            this.success = data.message;
+            this.getJobsByUser();
+          },
+          error => this.handleError(error)
+        );
+      }
+    }
+
+
+  }
+
+
+
+  private handleError(error: any) {
+    this.error = '';
+    this.error = error;
+  }
+
 }

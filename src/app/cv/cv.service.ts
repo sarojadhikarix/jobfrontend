@@ -57,6 +57,12 @@ export class CVservice {
             .map(res => res.json());
     }
 
+    public searchCV(data) {
+        return this.http.post(environment.apiRoute + 'cv/search', data)
+            .map(res => res.json().data)
+            .catch(this.handleError);
+    }
+
     private handleError(error: any): Promise<any> {
         return Promise.reject(error.json());
     }

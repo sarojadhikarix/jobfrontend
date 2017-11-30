@@ -48,4 +48,11 @@ export class JobService {
     private handleError(error: any): Promise<any> {
         return Promise.reject(error.json());
     }
+
+    public update(job) {
+        return this.http.post(environment.apiRoute + 'jobs/update', job)
+            .map(res => res.json())
+            .catch(this.handleError)
+    }
+
 }

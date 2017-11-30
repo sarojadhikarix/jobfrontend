@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 
 import { UserService } from './../user/user.service';
 import { Job } from './../job/job';
 import { JobService } from './../job/job.service';
-import { Router } from '@angular/router';
 @Component({
   selector: 'app-add-job',
   templateUrl: './add-job.component.html',
@@ -15,9 +15,11 @@ export class AddJobComponent implements OnInit {
   public joberror: any;
   public success: string;
   public error: string;
+  public todo: string;
   public job: Job = new Job();
   router: Router;
   constructor(
+    private route: ActivatedRoute,
     _router: Router,
     private jobService: JobService,
     private userService: UserService
@@ -25,7 +27,34 @@ export class AddJobComponent implements OnInit {
 
   ngOnInit() {
     this.getUserInfo();
+    this.route.params.subscribe(params => {
+      this.todo = (params['todo']);
+    });
+
+    if (this.todo != 'add') {
+      this.getJob();
+    }
   }
+
+  getJob() {
+    this.jobService.getJob(this.todo).subscribe(
+      data => {
+        this.job = data
+      }
+    );
+  }
+
+  update() {
+        this.jobService.update(this.job).subscribe(
+          data => {
+            this.success = data.message;
+            this.router.navigateByUrl('/manage-jobs');
+          },
+          error => this.handleError(error)
+        );
+      }
+    
+  
 
   add() {
     this.job.user_id = this.userInfo.id;
@@ -55,7 +84,7 @@ export class AddJobComponent implements OnInit {
     if (error.title || error.description || error.category_id || error.company_name || error.company_email || error.company_phone || error.keywords || error.type || error.requirements || error.user_id || error.finish || error.city || error.country) {
       confirm('Please fill all the required fields.');
       this.joberror = error;
-    }else{
+    } else {
       this.error = error;
       confirm(error.message);
     }

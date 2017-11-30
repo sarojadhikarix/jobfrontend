@@ -26,11 +26,14 @@
 	<!-- Table -->
 	<div class="sixteen columns">
 
-		<p class="margin-bottom-25" style="float: left;">The job applications for <strong><a href="#">Power Systems User Experience Designer</a></strong> are listed below.</p>
-		<strong><a href="#" class="download-csv">Download CSV</a></strong>
+		<p class="margin-bottom-25" style="float: left;">Select the job to see the<strong> applicants</strong>.</p>
 
+		<!-- Select -->
+		<select style="height:50px;" >
+			<option *ngFor="let job of jobs"  [value]="job.id">{{job.title}} , Posted: {{ job.created_at.date | date:'mediumDate' }}</option>
+		</select>
+		<div class="margin-bottom-15"></div>
 	</div>
-
 
 	<div class="eight columns">
 		<!-- Select -->

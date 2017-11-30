@@ -48,7 +48,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'job/:job-id', component: JobComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'add-job', component: AddJobComponent },
+  { path: 'add-job/:todo', component: AddJobComponent },
   { path: 'browse-categories', component: BrowseCategoriesComponent },
   { path: 'browse-jobs', component: BrowseJobsComponent },
   { path: 'contact', component: ContactComponent },
