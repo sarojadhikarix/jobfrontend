@@ -23,9 +23,15 @@ export class JobService {
             .map(res => res.json().data)
     }
 
+    public getJobByUser(id) {
+        return this.http.get(environment.apiRoute + 'jobs/user/' + id)
+            .map(res => res.json().data)
+    }
+
     public add(job) {
         return this.http.post(environment.apiRoute + 'jobs', job)
-            .map(res => res.json().data);
+            .map(res => res.json())
+            .catch(this.handleError)
     }
 
     public getJobsSortBy(sortby) {

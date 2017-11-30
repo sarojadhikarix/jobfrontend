@@ -20,22 +20,15 @@
 	<div class="sixteen columns">
 		<div class="submit-page">
 
-			<!-- Notice -->
-			<div class="notification notice closeable margin-bottom-40">
-				<p><span>Have an account?</span> If you don’t have an account you can create one below by entering your email address. A
-					password will be automatically emailed to you.</p>
-			</div>
-
-
 			<!-- Title -->
 			<div class="form">
-				<h5>Job Title</h5>
+				<h5>Job Title<label *ngIf="joberror?.title" style="color:red;">*{{joberror?.title[0]}}</label></h5>
 				<input class="search-field" type="text" [(ngModel)]="job.title" />
 			</div>
 
 			<!-- Location -->
 			<div class="form">
-				<h5>Location <span>(optional)</span></h5>
+				<h5>Location<label *ngIf="joberror?.city || joberror?.country" style="color:red;">*City and Country field is required.</label></h5>
 				<input class="search-field three columns" type="text" placeholder="e.g. City" [(ngModel)]="job.city" />
 				<input class="search-field three columns" type="text" placeholder="e.g. District" [(ngModel)]="job.district" />
 				<input class="search-field three columns" type="text" placeholder="e.g. Zone" [(ngModel)]="job.zone" />
@@ -46,8 +39,8 @@
 
 			<!-- Job Type -->
 			<div class="form">
-				<h5>Job Type</h5>
-				<select [(ngModel)]="job.type" data-placeholder="Full-Time" >
+				<h5>Job Type<label *ngIf="joberror?.type" style="color:red;">*{{joberror?.type[0]}}</label></h5>
+				<select style="height:50px;" [(ngModel)]="job.type" data-placeholder="Full-Time" >
 					<option value="Full-Time">Full-Time</option>
 					<option value="Part-Time">Part-Time</option>
 					<option value="Internship">Internship</option>
@@ -59,8 +52,8 @@
 			<!-- Choose Category -->
 			<div class="form">
 				<div class="select">
-					<h5>Category</h5>
-					<select [(ngModel)]="job.category_id"  >
+					<h5>Category Type<label *ngIf="joberror?.type" style="color:red;">*{{joberror?.type[0]}}</label></h5>
+					<select style="height:50px;" [(ngModel)]="job.category_id"  >
 						<option value="1">Accounting / Finance</option>
 						<option value="2">Computer / IT</option>
 						<option value="3">Restaurant / Food Service</option>
@@ -77,35 +70,35 @@
 
 			<!-- Tags -->
 			<div class="form">
-				<h5>Job Tags <span>(optional)</span></h5>
+				<h5>keywords<label *ngIf="joberror?.keywords" style="color:red;">*{{joberror?.keywords[0]}}</label></h5>
 				<input class="search-field" type="text" placeholder="e.g. PHP, Social Media, Management" [(ngModel)]="job.keywords" />
-				<p class="note">Comma separate tags, such as required skills or technologies, for this job.</p>
+				<p class="note">Comma separate keywords, such as required skills or technologies, for the job.</p>
 			</div>
 
 
 			<!-- Description -->
 			<div class="form">
-				<h5>Description</h5>
+				<h5>Description<label *ngIf="joberror?.description" style="color:red;">*{{joberror?.description[0]}}</label></h5>
 				<textarea class="WYSIWYG" [(ngModel)]="job.description" name="summary" cols="40" rows="3" id="summary" spellcheck="true"></textarea>
 			</div>
 
 			<!-- Requirements -->
 			<div class="form">
-				<h5>Requirements</h5>
+				<h5>Requirements<label *ngIf="joberror?.requirements" style="color:red;">*{{joberror?.requirements[0]}}</label></h5>
 				<textarea class="WYSIWYG" [(ngModel)]="job.requirements" name="summary" cols="40" rows="3" id="summary" spellcheck="true"></textarea>
 			</div>
 
 			<!-- Created Date -->
 			<div class="form">
 				<h5>Created Date <span>(optional)</span></h5>
-				<input data-role="date" type="date" placeholder="yyyy-mm-dd" [(ngModel)]="job.created_at">
+				<input style="height:30px;" data-role="date" type="date" placeholder="yyyy-mm-dd" [(ngModel)]="job.created_at">
 				<p class="note">Created date for new applicants.</p>
 			</div>
 
 			<!-- TClosing Date -->
 			<div class="form">
-				<h5>Closing Date <span>(optional)</span></h5>
-				<input data-role="date" type="date" placeholder="yyyy-mm-dd" [(ngModel)]="job.finish">
+				<h5>Deadline <label *ngIf="joberror?.finish" style="color:red;">*{{joberror?.finish[0]}}</label></h5>
+				<input style="height:30px;" data-role="date" type="date" placeholder="yyyy-mm-dd" [(ngModel)]="job.finish">
 				<p class="note">Deadline for new applicants.</p>
 			</div>
 
@@ -117,20 +110,20 @@
 
 			<!-- Email -->
 			<div class="form">
-				<h5>Company Email</h5>
-				<input class="search-field" type="email" placeholder="mail@example.com" [(ngModel)]="job.company_email" />
+				<h5>Company Email<label *ngIf="joberror?.company_email" style="color:red;">*{{joberror?.company_email[0]}}</label></h5>
+				<input class="search-field" type="email" placeholder="mail@example.com" [(ngModel)]="job.company_email" readonly />
 			</div>
 
 			<!-- Company Name -->
 			<div class="form">
 				<h5>Company Name</h5>
-				<input type="text" placeholder="Enter the name of the company" [(ngModel)]="job.company_name">
+				<input type="text" placeholder="Enter the name of the company" [(ngModel)]="job.company_name" readonly>
 			</div>
 
 			<!-- Company Phone -->
 			<div class="form">
-				<h5>Company Phone</h5>
-				<input type="text" placeholder="Enter the name of the company" [(ngModel)]="job.company_phone">
+				<h5>Company Phone<label *ngIf="joberror?.company_phone" style="color:red;">*{{joberror?.company_phone[0]}}</label></h5>
+				<input type="text" placeholder="eg. 00977XXXXXX with country code." [(ngModel)]="job.company_phone">
 			</div>
 
 			<!-- Website -->

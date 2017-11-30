@@ -22,4 +22,6 @@ export class Job {
             country : string = 'Nepal';
             zone : string = '';
             status : boolean = false;
+            filled : boolean = false;
+            applicant_count: number = 0;
 }

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from './../user/user.service';
 import { Job } from './../job/job';
 import { JobService } from './../job/job.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-add-job',
   templateUrl: './add-job.component.html',
@@ -11,11 +12,16 @@ import { JobService } from './../job/job.service';
 })
 export class AddJobComponent implements OnInit {
   public userInfo: any;
+  public joberror: any;
+  public success: string;
+  public error: string;
   public job: Job = new Job();
+  router: Router;
   constructor(
+    _router: Router,
     private jobService: JobService,
     private userService: UserService
-  ) { }
+  ) { this.router = _router; }
 
   ngOnInit() {
     this.getUserInfo();
@@ -23,28 +29,14 @@ export class AddJobComponent implements OnInit {
 
   add() {
     this.job.user_id = this.userInfo.id;
-    if (this.job.title == '') {
-      confirm('Please fill the title field.');
-    } else if (this.job.description == '') {
-      confirm('Please fill the description field.');
-    } else if (this.job.category_id == null) {
-      confirm('Please fill the category field.');
-    } else if (this.job.company_name == '') {
-      confirm('Please fill the company name field.');
-    } else if (this.job.company_email == '') {
-      confirm('Please fill the company email field.');
-    } else if (this.job.company_phone == '') {
-      confirm('Please fill the company phone field.');
-    } else if (this.job.type == '') {
-      confirm('Please fill the Job Type field.');
-    } else if (this.job.finish == '') {
-      confirm('Please fill the Closing Date field.');
-    } else {
-      this.jobService.add(this.job).subscribe(
-        data => {
-          confirm(data.message);
-        });
-    }
+    this.jobService.add(this.job).subscribe(
+      data => {
+        this.success = data.message;
+        confirm(data.message);
+        this.router.navigateByUrl('/manage-jobs');
+      },
+      error => this.handleError(error)
+    );
   }
 
   getUserInfo() {
@@ -55,6 +47,18 @@ export class AddJobComponent implements OnInit {
         this.job.company_email = data.email;
       }
     );
+  }
+
+  private handleError(error: any) {
+    this.joberror = null;
+    this.error = '';
+    if (error.title || error.description || error.category_id || error.company_name || error.company_email || error.company_phone || error.keywords || error.type || error.requirements || error.user_id || error.finish || error.city || error.country) {
+      confirm('Please fill all the required fields.');
+      this.joberror = error;
+    }else{
+      this.error = error;
+      confirm(error.message);
+    }
   }
 
 }

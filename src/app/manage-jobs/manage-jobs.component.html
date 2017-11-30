@@ -22,7 +22,7 @@
 <!-- Content
 ================================================== -->
 <div class="container">
-	
+
 	<!-- Table -->
 	<div class="sixteen columns">
 
@@ -36,43 +36,25 @@
 				<th><i class="fa fa-calendar"></i> Date Posted</th>
 				<th><i class="fa fa-calendar"></i> Date Expires</th>
 				<th><i class="fa fa-user"></i> Applications</th>
+				<th><i class="fa fa-user"></i> Approval</th>
 				<th></th>
 			</tr>
-					
-			<!-- Item #1 -->
-			<tr>
-				<td class="title"><a href="#">Marketing Coordinator - SEO / SEM Experience <span class="pending">(Pending Approval)</span></a></td>
-				<td class="centered">-</td>
-				<td>September 30, 2015</td>
-				<td>October 10, 2015</td>
-				<td class="centered">-</td>
-				<td class="action">
-					<a href="#" class="delete"><i class="fa fa-remove"></i> Delete</a>
-				</td>
-			</tr>
-					
+
 			<!-- Item #2 -->
-			<tr>
-				<td class="title"><a href="#">Web Developer - Front End Web Development, Relational Databases</a></td>
-				<td class="centered">-</td>
-				<td>September 30, 2015</td>
-				<td>October 10, 2015</td>
-				<td class="centered"><a href="manage-applications.html" class="button">Show (4)</a></td>
+			<tr *ngFor="let job of jobs | slice:sliceStart:sliceEnd; let j =index">
+				<td class="title"><a href="#">{{ job.title }}</a></td>
+				<td class="centered">
+					<span *ngIf="job.status == 1"><i class="fa fa-check"></i></span><span *ngIf="job.status == 0"><i class="fa fa-times"></i></span></td>
+				<td>{{ job.created_at.date | date:'mediumDate' }}</td>
+				<td>{{ job.finish | date:'mediumDate' }}</td>
+				<td class="centered">
+					<a *ngIf="job.applicant_count > 0" href="manage-applications.html" class="button">Show ({{job.applicant_count}})</a>
+					<span *ngIf="job.applicant_count == 0">0</span>
+				</td>
+				<td><span *ngIf="job.status == 0">Pending</span><span *ngIf="job.status == 1">Approved</span></td>
 				<td class="action">
 					<a href="#"><i class="fa fa-pencil"></i> Edit</a>
 					<a href="#"><i class="fa  fa-check "></i> Mark Filled</a>
-					<a href="#" class="delete"><i class="fa fa-remove"></i> Delete</a>
-				</td>
-			</tr>	
-
-			<!-- Item #2 -->
-			<tr>
-				<td class="title"><a href="#">Power Systems User Experience Designer</a></td>
-				<td class="centered"><i class="fa fa-check"></i></td>
-				<td>May 16, 2015</td>
-				<td>June 30, 2015</td>
-				<td class="centered"><a href="manage-applications.html" class="button">Show (9)</a></td>
-				<td class="action">
 					<a href="#" class="delete"><i class="fa fa-remove"></i> Delete</a>
 				</td>
 			</tr>
@@ -80,7 +62,22 @@
 		</table>
 
 		<br>
-		<a href="#" class="button">Add Job</a>
+		<a routerLink="/add-job" class="button">Add Job</a>
+
+		<div class="pagination-container">
+			<nav class="pagination">
+				<ul>
+					<li style="margin-left:5px; cursor: pointer;" (click)="changePage(i)" *ngFor="let page of numOfPages; let i = index"><a id="pagination{{i}}">{{i+1}}</a></li>
+				</ul>
+			</nav>
+
+			<nav class="pagination-next-prev">
+				<ul>
+					<!-- <li><a href="#" class="prev">Previous</a></li>
+						<li><a href="#" class="next">Next</a></li> -->
+				</ul>
+			</nav>
+		</div>
 
 	</div>
 
