@@ -5,15 +5,16 @@ import { JobService } from './../job/job.service';
 import { CategoryService } from './../category/category.service';
 import { Job } from './../job/job';
 import { Search } from './../search/search';
+import { UserService } from './../user/user.service';
 @Component({
   selector: 'app-browse-jobs',
   templateUrl: './browse-jobs.component.html',
   styleUrls: ['./browse-jobs.component.css'],
-  providers: [JobService, CategoryService]
+  providers: [JobService, CategoryService, UserService]
 })
 export class BrowseJobsComponent implements OnInit {
 
-
+  public userInfo: any;
   public type: string;
   public catid: string;
   public jobs: Job[];
@@ -24,14 +25,17 @@ export class BrowseJobsComponent implements OnInit {
   public sliceStart: number = 0;
   public sliceEnd: number = 4;
   public page: number;
+  router: Router;
   constructor(
+    _router: Router,
     private route: ActivatedRoute,
     private jobService: JobService,
-    private categoryService: CategoryService
-  ) { }
+    private categoryService: CategoryService,
+    private userService: UserService
+  ) {this.router = _router; }
 
   ngOnInit() {
-    
+    this.getUserInfo();
     this.type = localStorage.getItem('type');
     if (this.type == '') {
       this.type = 'alljobs';
@@ -51,6 +55,19 @@ export class BrowseJobsComponent implements OnInit {
     localStorage.setItem('location', '');
     localStorage.setItem('catid', '');
 
+  }
+
+  public getUserInfo() {
+    this.userService.getUserInfo().subscribe(
+      data => {
+        this.userInfo = data;
+        if (data.role_id == 2) {
+          if (confirm("Employer not allowed. Create a new account as an employee.")) {
+            this.router.navigateByUrl('/manage-jobs');
+          }
+        }
+      }
+    );
   }
 
   getJobsByCategory() {
@@ -93,13 +110,13 @@ export class BrowseJobsComponent implements OnInit {
   public changePage(i) {
     this.sliceStart = i * 4;
     this.sliceEnd = this.sliceStart + 4;
-    for(let x=0;x<=this.page;x++){
-      if(i==x){
-        document.getElementById('pagination'+ i).className += " current-page";
-      }else{
-        document.getElementById('pagination'+ x).classList.remove("current-page");
+    for (let x = 0; x <= this.page; x++) {
+      if (i == x) {
+        document.getElementById('pagination' + i).className += " current-page";
+      } else {
+        document.getElementById('pagination' + x).classList.remove("current-page");
       }
     }
-    
+
   }
 }

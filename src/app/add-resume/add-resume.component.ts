@@ -41,6 +41,11 @@ export class AddResumeComponent implements OnInit {
     this.userService.getUserInfo().subscribe(
       data => {
         this.userInfo = data;
+        if (data.role_id == 2) {
+          if (confirm("Employer not allowed. Create a new account as an employee")) {
+            this.router.navigateByUrl('/manage-jobs');
+          }
+        }
       }
     );
   }
@@ -48,13 +53,13 @@ export class AddResumeComponent implements OnInit {
   public add() {
     this.cv.user_id = this.userInfo.id;
     this.cv.cv_link = this.returnedcvfilename;
-      this.cvService.addCV(this.cv).subscribe(
-        data => {
-          confirm(data.message);
-          this.router.navigateByUrl('/manage-resume');
-        },
-        error => this.handleError(error)
-      );
+    this.cvService.addCV(this.cv).subscribe(
+      data => {
+        confirm(data.message);
+        this.router.navigateByUrl('/manage-resume');
+      },
+      error => this.handleError(error)
+    );
   }
 
   fileChangeEvent(event): void {
@@ -71,12 +76,12 @@ export class AddResumeComponent implements OnInit {
 
     this.cvService.addCVfile(formData).subscribe(
       data => {
-        if(data.success){
-        this.success = data.success;
-        this.returnedcvfilename = data.filename;
-        }else{
-        this.error = data.error;
-      }
+        if (data.success) {
+          this.success = data.success;
+          this.returnedcvfilename = data.filename;
+        } else {
+          this.error = data.error;
+        }
       },
       error => this.handleError(error)
     );
@@ -87,9 +92,9 @@ export class AddResumeComponent implements OnInit {
     this.cverror = null;
     if (error.cv_file) {
       this.cvfileerror = error.cv_file[0];
-    }else{
+    } else {
       this.cverror = error;
-      if(error.user_id){
+      if (error.user_id) {
         if (confirm("CV already exists. Go to update or delete sections for the changes.")) {
           this.router.navigateByUrl('/manage-resume');
         }

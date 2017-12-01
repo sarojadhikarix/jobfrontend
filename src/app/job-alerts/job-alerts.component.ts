@@ -46,6 +46,11 @@ export class JobAlertsComponent implements OnInit {
     this.userService.getUserInfo().subscribe(
       data => {
         this.userInfo = data;
+        if (data.role_id == 2) {
+          if (confirm("Employer not allowed. Create a new account as an employee.")) {
+            this.router.navigateByUrl('/manage-jobs');
+          }
+        }
         this.getCV();
       }
     );

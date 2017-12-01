@@ -8,6 +8,7 @@ import { CVservice } from './../cv/cv.service';
 import { UserService } from './../user/user.service';
 import { environment } from './../../environments/environment';
 import { Search } from './../search/search';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-browse-resume',
   templateUrl: './browse-resume.component.html',
@@ -22,7 +23,8 @@ export class BrowseResumeComponent implements OnInit {
   public mail: Mail = new Mail();
   public success: string;
   public error: string;
-  picture_link: string = '';
+  picture_link_start: string = '';
+  picture_link_end: string = '';
   picture_error: string = '';
   public count: number = 0;
   public search: Search = new Search;
@@ -30,21 +32,24 @@ export class BrowseResumeComponent implements OnInit {
   public sliceStart: number = 0;
   public sliceEnd: number = 4;
   public page: number;
+  router: Router;
   constructor(
+    _router: Router,
     private cvService: CVservice,
     private userService: UserService,
     private mailservice: MailService
-  ) { }
+  ) { this.router = _router;  }
 
   ngOnInit() {
     this.getUserInfo();
     this.searchCV();
-    this.picture_error = environment.apiRoute + 'storage/propic/error.png';
-
+    this.picture_error = 'error.png';
+    this.picture_link_start = environment.apiRoute + 'storage/propic/';
+    this.picture_link_end = '_propic.png?' + new Date().getTime();
   }
 
   public updateLink() {
-    this.picture_link = this.picture_error;
+    this.picture_link_end = this.picture_error;
   }
 
   searchCV() {
@@ -65,6 +70,11 @@ export class BrowseResumeComponent implements OnInit {
     this.userService.getUserInfo().subscribe(
       data => {
         this.userInfo = data;
+        if (data.role_id == 1) {
+          if (confirm("Employee not allowed. Create a new account as an employer.")) {
+            this.router.navigateByUrl('/manage-resume');
+          }
+        }
       }
     );
   }

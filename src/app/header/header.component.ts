@@ -15,6 +15,7 @@ declare var $: any;
 })
 export class HeaderComponent implements OnInit {
 
+  public new_applicant: string = '';
   username: any;
   role_id: string = '';
   error: string = '';

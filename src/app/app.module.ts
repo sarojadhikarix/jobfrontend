@@ -53,7 +53,7 @@ const routes: Routes = [
   { path: 'browse-jobs', component: BrowseJobsComponent },
   { path: 'contact', component: ContactComponent },
   {path: 'add-resume', component: AddResumeComponent},
-  {path: 'resume-page', component: ResumePageComponent},
+  {path: 'resume-page/:user_id/:email', component: ResumePageComponent},
   {path: 'manage-resume', component: ManageResumeComponent},
   {path: 'job-alerts', component: JobAlertsComponent},
   {path: 'manage-jobs', component: ManageJobsComponent},

@@ -38,6 +38,11 @@ export class ManageResumeComponent implements OnInit {
     this.userService.getUserInfo().subscribe(
       data => {
         this.userInfo = data;
+        if (data.role_id == 2) {
+          if (confirm("Employer not allowed. Create a new account as an employee.")) {
+            this.router.navigateByUrl('/manage-jobs');
+          }
+        }
         this.getCV();
       }
     );
@@ -55,9 +60,9 @@ export class ManageResumeComponent implements OnInit {
   public deleteCV() {
     this.cvService.deleteCV(this.userInfo.id).subscribe(
       data => {
-        
+
       }
-      
+
     );
     this.getCV();
   }

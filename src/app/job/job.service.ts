@@ -55,4 +55,21 @@ export class JobService {
             .catch(this.handleError)
     }
 
+    public addStatus(stats) {
+        return this.http.post(environment.apiRoute + 'jobs/addstatus', stats)
+            .map(res => res.json())
+            .catch(this.handleError)
+    }
+
+    public updateStatus(stats) {
+        return this.http.post(environment.apiRoute + 'jobs/updatestatus', stats)
+            .map(res => res.json())
+            .catch(this.handleError)
+    }
+
+    public getStatus(job_id, user_id) {
+        return this.http.get(environment.apiRoute + 'jobs/getstatus/' + job_id + '/' + user_id)
+            .map(res => res.json().data)
+    }
+
 }
