@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
+
 import { JobService } from './job.service';
 import { Job } from './job';
 import { UserService } from './../user/user.service';
@@ -31,14 +32,14 @@ export class JobComponent implements OnInit {
     });
     this.getUserInfo();
     this.getJob();
-    this.getStatus();
+    
     
   }
 
   getJob() {
     this.jobService.getJob(this.job_id).subscribe(
       data => {
-        this.job = data
+        this.job = data;
       }
     );
   }
@@ -47,6 +48,7 @@ export class JobComponent implements OnInit {
     this.userService.getUserInfo().subscribe(
       data => {
         this.userInfo = data;
+        this.getStatus();
       }
     );
   }
@@ -69,11 +71,16 @@ export class JobComponent implements OnInit {
   }
 
   getStatus(){
+    this.applied = '';
     this.jobService.getStatus(this.job_id, this.userInfo.id).subscribe(
       data => {
-        this.applied = data.message;
+        this.jobstatus = data;
+      },
+      error =>{
+        this.applied = error.data.status;
       }
     )
   }
 
 }
+ 

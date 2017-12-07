@@ -68,8 +68,16 @@ export class JobService {
     }
 
     public getStatus(job_id, user_id) {
-        return this.http.get(environment.apiRoute + 'jobs/getstatus/' + job_id + '/' + user_id)
+        if(job_id == 0){
+            job_id = '';
+        }
+        if(user_id == 0){
+            user_id = '';
+        }
+        let data = {"job_id":job_id, "user_id":user_id};
+        return this.http.post(environment.apiRoute + 'jobs/getstatus/', data)
             .map(res => res.json().data)
+            .catch(this.handleError)
     }
 
 }

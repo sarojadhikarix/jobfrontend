@@ -89,7 +89,8 @@
 				</ul>
 
 
-				<a *ngIf="userInfo?.role_id == 1" (click)="addStatus()" id="applybutton"  class="button">Apply For This Job</a>
+				<a *ngIf="userInfo?.role_id == 1 && applied != ''" (click)="addStatus()" id="applybutton"  class="button">Apply For This Job</a>
+				<a *ngIf="userInfo?.role_id == 1 && applied == ''" id="applybutton"  class="button">Already applied on {{jobstatus[0]?.created_at.date | date:"medium"}}. if you get selected then you will get an email from the employer. Thankyou for surfing our website.</a>
 
 			</div>
 
