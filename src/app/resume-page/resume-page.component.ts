@@ -20,8 +20,8 @@ export class ResumePageComponent implements OnInit {
   public toemail: string;
   public user_id: string;
   public cvlink: string;
-  public cv: CV;
-  public userInfo: UserInfo;
+  public cv: CV = new CV;
+  public userInfo: UserInfo = new UserInfo();
   public mail: Mail = new Mail();
   public success: string;
   public error: string;
@@ -44,6 +44,7 @@ export class ResumePageComponent implements OnInit {
 
     if (this.user_id != 'myself') {
       this.getCV(this.user_id);
+      this.getUserByID(this.user_id);
     } else {
       this.getUserInfo();
       if (this.userInfo.role_id == '2') {
@@ -59,6 +60,15 @@ export class ResumePageComponent implements OnInit {
 
   public updateLink() {
     this.picture_link = this.picture_error;
+  }
+
+  public getUserByID(id){
+    this.userService.getUserInfoByID(id).subscribe(
+      data => {
+        this.userInfo = data;
+        this.toemail = data.email;
+      }
+    );
   }
 
   public getCV(user_id) {

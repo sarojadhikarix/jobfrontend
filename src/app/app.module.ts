@@ -58,7 +58,7 @@ const routes: Routes = [
   {path: 'manage-resume', component: ManageResumeComponent},
   {path: 'job-alerts', component: JobAlertsComponent},
   {path: 'manage-jobs', component: ManageJobsComponent},
-  {path: 'manage-application', component: ManageApplicationsComponent},
+  {path: 'manage-application/:job-id', component: ManageApplicationsComponent},
   {path: 'browse-resume', component: BrowseResumeComponent},
   { path: '404', component: ErrorpageComponent },
   { path: 'user-account', component:UserAccountComponent},

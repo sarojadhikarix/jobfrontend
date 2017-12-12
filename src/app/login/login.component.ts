@@ -54,6 +54,10 @@ export class LoginComponent implements OnInit {
 
   public registerUser(): void {
     this.registererror = null;
+    if(this.register.role_id == 2){
+      this.register.gender = '4';
+    }
+    console.log(this.register);
     this.userService.register(this.register).subscribe(
       () => {
       },

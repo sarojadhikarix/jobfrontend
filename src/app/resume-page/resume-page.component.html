@@ -7,14 +7,14 @@
       <div class="resume-titlebar">
         <img [src]="picture_link" (error)="updateLink($event)" alt="profile_image" style="max-width:110px; max-height:110px;">
         <div class="resumes-list-content">
-          <h4> {{userInfo?.name}} <span>{{cv?.professional_title}}</span></h4>
-          <span class="icons"><i class="fa fa-map-marker"></i>{{cv?.address}}</span>
+          <h4> {{userInfo.name}} <span *ngIf="cv.status != 'not_found'">{{cv.professional_title}}</span></h4>
+          <span  *ngIf="cv.status != 'not_found'" class="icons"><i class="fa fa-map-marker"></i>{{cv.address}}</span>
           <span class="icons"><i class="fa fa-money"></i> Good</span>
           <span class="icons"><a href="#"><i class="fa fa-link"></i> </a></span>
-          <span class="icons"><a><i class="fa fa-envelope"></i> {{userInfo?.email}}</a></span>
+          <span class="icons"><a><i class="fa fa-envelope"></i> {{userInfo.email}}</a></span>
           <div class="skills">
-            <span>{{cv?.skills}}</span>
-
+            <span  *ngIf="cv.status != 'not_found'">{{cv.skills}}</span>
+            <span  *ngIf="cv.status == 'not_found'">{{userInfo.name}} haven't added Resume yet.</span>
           </div>
           <div class="clearfix"></div>
 
@@ -29,7 +29,7 @@
 
         <div id="small-dialog" class="zoom-anim-dialog mfp-hide apply-popup">
           <div class="small-dialog-headline">
-            <h2>Send Message to {{userInfo?.name}}</h2>
+            <h2>Send Message to {{userInfo.name}}</h2>
           </div>
 
           <div class="small-dialog-content">
@@ -64,14 +64,14 @@
 
 <!-- Content
 ================================================== -->
-<div class="container">
+<div *ngIf="cv.status != 'not_found'" class="container">
   <!-- Recent Jobs -->
   <div class="sixteen columns">
     <div class="padding-right">
 
       <h3 class="margin-bottom-15">About and Wish</h3>
 
-      <p class="margin-reset">{{cv?.wish}}
+      <p class="margin-reset">{{cv.wish}}
       </p>
 
       <br>

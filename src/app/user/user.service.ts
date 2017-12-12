@@ -66,6 +66,12 @@ export class UserService {
             .catch(this.handleError);
     }
 
+    public getUserInfoByID(id){
+        return this.http.get(environment.apiRoute + 'user/' + id)
+        .map(res => res.json().data)
+        .catch(this.handleError);
+    }
+
     private handleError(error: any): Promise<any> {
         return Promise.reject(error.json());
     }

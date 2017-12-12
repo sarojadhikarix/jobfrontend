@@ -102,6 +102,23 @@
 
 					</p>
 
+					<p *ngIf="register.role_id == 1" class="form-row form-row-wide">
+						<label *ngIf="registererror?.gender" style="color:red;">*{{registererror?.gender[0]}}</label>
+						<label for="username2">Gender:
+						 <select style="height:50px;" [(ngModel)]="register.gender" [ngModelOptions]="{standalone: true}">
+							<option [value]="1">Male</option>
+							<option [value]="2">Female</option>
+							<option [value]="3">Other</option>
+						</select> 
+						<!-- <select id="roletype" (change)="changeRole()" data-placeholder="Job" class="chosen-select-no-single">
+							<option value="1">Job</option>
+							<option value="2">Employee</option>
+						</select> -->
+					
+					</label>
+
+					</p>
+
 					<p class="form-row form-row-wide">
 						<label *ngIf="registererror?.email" style="color:red;">*{{registererror?.email[0]}}</label>
 						<label for="email2">Email Address:

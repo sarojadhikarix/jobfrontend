@@ -4,4 +4,5 @@ export class Register {
     email: string = '';
     password: string = '';
     password_confirmation: string = '';
+    gender: string = '';
 }

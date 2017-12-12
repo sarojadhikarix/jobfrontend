@@ -48,7 +48,7 @@
 				<td>{{ job.created_at.date | date:'mediumDate' }}</td>
 				<td>{{ job.finish | date:'mediumDate' }}</td>
 				<td class="centered">
-					<a *ngIf="job.applicant_count > 0" href="manage-applications.html" class="button">Show ({{job.applicant_count}})</a>
+					<a *ngIf="job.applicant_count > 0" routerLink="/manage-application/{{job.id}}" class="button">Show ({{job.applicant_count}})</a>
 					<span *ngIf="job.applicant_count == 0">0</span>
 				</td>
 				<td><span *ngIf="job.status == 0">Pending</span><span *ngIf="job.status == 1">Approved</span></td>
