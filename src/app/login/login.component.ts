@@ -5,6 +5,7 @@ import { Register } from './../user/register';
 import { Router } from '@angular/router';
 import { UserService } from './../user/user.service';
 import { AppComponent } from './../app.component';
+import { ForgotPassword } from './../user/forgotpassword';
 declare var $: any;
 @Component({
   selector: 'app-login',
@@ -21,6 +22,7 @@ export class LoginComponent implements OnInit {
   error: string;
   router: Router;
   registererror: any = null;
+  forgotpassword: ForgotPassword = new ForgotPassword();
 
   constructor(
     private jsService: CustomJavascriptService,
@@ -57,7 +59,6 @@ export class LoginComponent implements OnInit {
     if(this.register.role_id == 2){
       this.register.gender = '4';
     }
-    console.log(this.register);
     this.userService.register(this.register).subscribe(
       () => {
       },
@@ -104,5 +105,38 @@ export class LoginComponent implements OnInit {
     this.error = '';
   }
 
+  public sendToken(){
+    this.registererror = null;
+    this.error = '';
+    this.userService.sendToken(this.forgotpassword).subscribe(
+      data => {
+        if(data.status == true){
+          this.forgotpassword.checktoken = true;
+        }
+      },
+      error => {
+        this.error = error.message;
+        this.registererror = error;
+      }
+    );
+  }
+
+  public resetPassword(){
+    this.registererror = null;
+    this.error = '';
+    this.userService.resetPassword(this.forgotpassword).subscribe(
+      data => {
+        if(data.status == true){
+          this.loginData.username = this.forgotpassword.email;
+          this.loginData.password = this.forgotpassword.password;
+          this.login();
+        }
+      },
+      error => {
+        this.error = error.message;
+        this.registererror = error;
+      }
+    );
+  }
 
 }

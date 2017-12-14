@@ -9,7 +9,9 @@
 			<nav id="breadcrumbs">
 				<ul>
 					<li>You are here:</li>
-					<li><a href="#">Home</a></li>
+					<li>
+						<a href="#">Home</a>
+					</li>
 					<li>My Account</li>
 				</ul>
 			</nav>
@@ -28,16 +30,25 @@
 	<div class="my-account">
 
 		<ul class="tabs-nav">
-			<li class=""><a (click)='reset()' href="#tab1">Login</a></li>
-			<li><a (click)='reset()' href="#tab2">Register</a></li>
+			<li class="">
+				<a (click)='reset()' href="#tab1">Login</a>
+			</li>
+			<li>
+				<a (click)='reset()' href="#tab2">Register</a>
+			</li>
+			<li>
+				<a (click)='reset()' href="#tab3">Forgot Password?</a>
+			</li>
 		</ul>
 
 		<div class="tabs-container">
 			<!-- Login -->
 			<div class="tab-content" id="tab1" style="display: none;">
 				<div *ngIf="error" class="notification error closeable">
-					<p *ngIf="error == 'invalid_request'"><span>Error!</span> Login doesn't match. </p>
-					<p *ngIf="error == 'invalid_credentials'"><span>Error!</span> The user credentials were incorrect. </p>
+					<p *ngIf="error == 'invalid_request'">
+						<span>Error!</span> Login doesn't match. </p>
+					<p *ngIf="error == 'invalid_credentials'">
+						<span>Error!</span> The user credentials were incorrect. </p>
 					<a class="close" href="#"></a>
 				</div>
 				<form method="post" class="login">
@@ -52,7 +63,7 @@
 					<p class="form-row form-row-wide">
 						<label for="password">Password:
 							<i class="ln ln-icon-Lock-2"></i>
-							<input class="input-text" [(ngModel)]="loginData.password" type="password" name="password" id="password"/>
+							<input class="input-text" [(ngModel)]="loginData.password" type="password" name="password" id="password" />
 						</label>
 					</p>
 
@@ -79,72 +90,125 @@
 					<p class="form-row form-row-wide">
 						<label *ngIf="registererror?.name" style="color:red;">*{{registererror?.name[0]}}</label>
 						<label for="username2">Name:
-						<i class="ln ln-icon-Male"></i>
-						<input type="text" class="input-text" name="username" id="username2" [(ngModel)]="register.name" />
-					
-					</label>
+							<i class="ln ln-icon-Male"></i>
+							<input type="text" class="input-text" name="username" id="username2" [(ngModel)]="register.name" />
+
+						</label>
 					</p>
 
 					<!-- Job Type -->
 					<p class="form-row form-row-wide">
 						<label *ngIf="registererror?.role_id" style="color:red;">*{{registererror?.role_id[0]}}</label>
 						<label for="username2">Looking For:
-						 <select style="height:50px;" [(ngModel)]="register.role_id" [ngModelOptions]="{standalone: true}">
-							<option selected="selected" [value]="1">Job</option>
-							<option [value]="2">Employee</option>
-						</select> 
-						<!-- <select id="roletype" (change)="changeRole()" data-placeholder="Job" class="chosen-select-no-single">
+							<select style="height:50px;" [(ngModel)]="register.role_id" [ngModelOptions]="{standalone: true}">
+								<option selected="selected" [value]="1">Job</option>
+								<option [value]="2">Employee</option>
+							</select>
+							<!-- <select id="roletype" (change)="changeRole()" data-placeholder="Job" class="chosen-select-no-single">
 							<option value="1">Job</option>
 							<option value="2">Employee</option>
 						</select> -->
-					
-					</label>
+
+						</label>
 
 					</p>
 
 					<p *ngIf="register.role_id == 1" class="form-row form-row-wide">
 						<label *ngIf="registererror?.gender" style="color:red;">*{{registererror?.gender[0]}}</label>
 						<label for="username2">Gender:
-						 <select style="height:50px;" [(ngModel)]="register.gender" [ngModelOptions]="{standalone: true}">
-							<option [value]="1">Male</option>
-							<option [value]="2">Female</option>
-							<option [value]="3">Other</option>
-						</select> 
-						<!-- <select id="roletype" (change)="changeRole()" data-placeholder="Job" class="chosen-select-no-single">
+							<select style="height:50px;" [(ngModel)]="register.gender" [ngModelOptions]="{standalone: true}">
+								<option [value]="1">Male</option>
+								<option [value]="2">Female</option>
+								<option [value]="3">Other</option>
+							</select>
+							<!-- <select id="roletype" (change)="changeRole()" data-placeholder="Job" class="chosen-select-no-single">
 							<option value="1">Job</option>
 							<option value="2">Employee</option>
 						</select> -->
-					
-					</label>
+
+						</label>
 
 					</p>
 
 					<p class="form-row form-row-wide">
 						<label *ngIf="registererror?.email" style="color:red;">*{{registererror?.email[0]}}</label>
 						<label for="email2">Email Address:
-						<i class="ln ln-icon-Mail"></i>
-						<input type="email" class="input-text" name="email" id="email2" [(ngModel)]="register.email" />
-					</label>
+							<i class="ln ln-icon-Mail"></i>
+							<input type="email" class="input-text" name="email" id="email2" [(ngModel)]="register.email" />
+						</label>
 					</p>
 
 					<p class="form-row form-row-wide">
 						<label *ngIf="registererror?.password" style="color:red;">*{{registererror?.password[0]}}</label>
 						<label for="password1">Password:
-						<i class="ln ln-icon-Lock-2"></i>
-						<input class="input-text" type="password" name="password1" id="password1" [(ngModel)]="register.password"/>
-					</label>
+							<i class="ln ln-icon-Lock-2"></i>
+							<input class="input-text" type="password" name="password1" id="password1" [(ngModel)]="register.password" />
+						</label>
 					</p>
 
 					<p class="form-row form-row-wide">
 						<label *ngIf="registererror?.password" style="color:red;">*{{registererror?.password[0]}}</label>
 						<label for="password2">Repeat Password:
-						<i class="ln ln-icon-Lock-2"></i>
-						<input class="input-text" type="password" name="password2" id="password2" [(ngModel)]="register.password_confirmation"/>
-					</label>
+							<i class="ln ln-icon-Lock-2"></i>
+							<input class="input-text" type="password" name="password2" id="password2" [(ngModel)]="register.password_confirmation" />
+						</label>
 					</p>
 
 					<p class="form-row">
 						<input type="submit" (click)="registerUser()" class="button border fw margin-top-10" name="register" value="Register" />
+					</p>
+
+				</form>
+			</div>
+			<!-- Forgot password -->
+			<div class="tab-content" id="tab3" style="display: none;">
+				<div *ngIf="error" class="notification error closeable">
+					<p><span>Error!</span> {{error}} </p>
+					<a class="close" href="#"></a>
+				</div>
+				<form method="post" class="register">
+
+					<p>If you have lost your password, please complete this wizard for the new password. </p>
+					<p *ngIf="forgotpassword.checktoken == false" class="form-row form-row-wide">
+						<label *ngIf="registererror?.email" style="color:red;">*{{registererror?.email[0]}}</label>
+						<label for="email2">Email Address:
+							<i class="ln ln-icon-Mail"></i>
+							<input type="email" class="input-text" name="email" id="email2" [(ngModel)]="forgotpassword.email" />
+						</label>
+					</p>
+
+					<p *ngIf="forgotpassword.checktoken == true" class="form-row form-row-wide">
+						<label *ngIf="registererror?.token" style="color:red;">*{{registererror?.token[0]}}</label>
+						<label for="username2">Token:
+							<i class="fa fa-shield"></i>
+							<input placeholder="Check your email for the token." type="text" class="input-text" name="username" id="username2" [(ngModel)]="forgotpassword.token"
+							/>
+
+						</label>
+					</p>
+
+					<p *ngIf="forgotpassword.checktoken == true" class="form-row form-row-wide">
+						<label *ngIf="registererror?.password" style="color:red;">*{{registererror?.password[0]}}</label>
+						<label for="password1">Password:
+							<i class="ln ln-icon-Lock-2"></i>
+							<input class="input-text" type="password" name="password1" id="password1" [(ngModel)]="forgotpassword.password" />
+						</label>
+					</p>
+
+					<p *ngIf="forgotpassword.checktoken == true" class="form-row form-row-wide">
+						<label *ngIf="registererror?.password" style="color:red;">*{{registererror?.password[0]}}</label>
+						<label for="password2">Repeat Password:
+							<i class="ln ln-icon-Lock-2"></i>
+							<input class="input-text" type="password" name="password2" id="password2" [(ngModel)]="forgotpassword.password_confirmation"
+							/>
+						</label>
+					</p>
+
+					<p *ngIf="forgotpassword.checktoken == true" class="form-row">
+						<input type="submit" (click)="resetPassword()" class="button border fw margin-top-10" name="change" value="Change" />
+					</p>
+					<p *ngIf="forgotpassword.checktoken == false" class="form-row">
+						<input type="submit" (click)="sendToken()" class="button border fw margin-top-10" name="token" value="Next" />
 					</p>
 
 				</form>

@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit {
   public categories: any;
   public endsoonjobs: Job[];
   public search: Search = new Search;
+  public jobscount: number;
   router: Router;
   constructor(
     private jobService: JobService,
@@ -40,6 +41,7 @@ export class HomeComponent implements OnInit {
     this.jobService.getJobs().subscribe(
       data => {
         this.jobs = data;
+        this.jobscount = this.jobs.length;
         error => this.error = error.json().error;
 
       }

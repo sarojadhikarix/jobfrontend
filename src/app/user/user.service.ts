@@ -66,14 +66,26 @@ export class UserService {
             .catch(this.handleError);
     }
 
-    public getUserInfoByID(id){
+    public getUserInfoByID(id) {
         return this.http.get(environment.apiRoute + 'user/' + id)
-        .map(res => res.json().data)
-        .catch(this.handleError);
+            .map(res => res.json().data)
+            .catch(this.handleError);
     }
 
     private handleError(error: any): Promise<any> {
         return Promise.reject(error.json());
+    }
+
+    public sendToken(data) {
+        return this.http.post(environment.apiRoute + 'password/email', data)
+            .map(res => res.json())
+            .catch(this.handleError)
+    }
+
+    public resetPassword(data){
+        return this.http.post(environment.apiRoute + 'password/reset', data)
+        .map(res => res.json())
+        .catch(this.handleError)
     }
 
     addpropic(data: any) {
