@@ -26,8 +26,8 @@
 		
 		<!-- Company Info -->
 		<div class="company-info">
-			<img *ngIf="company_logo != ''" src="./../../assets/images/company-logo.png" alt="">
-			<img *ngIf="company_logo == ''" src="./../../assets/images/company-logo.png" alt="">
+			<img *ngIf="job.company_logo != ''" src="./../../assets/images/company-logo.png" alt="">
+			<img *ngIf="job.company_logo == ''" src="./../../assets/images/company-logo.png" alt="">
 			<div class="content">
 				<h4>{{job.company_name}}</h4>
 				<span *ngIf="job.company_website != ''"><a href="#"><i class="fa fa-link"></i> {{job.company_website}}</a></span>

@@ -5,7 +5,7 @@
 
 export const environment = {
   production: false,
-  //apiRoute: 'http://localhost:8000/',
+  //apiRoute: 'http://192.168.1.36:32/',
   apiRoute: 'http://api.hopnep.com/',
   uploadsRoute: 'http://'
 };

@@ -29,7 +29,7 @@
 					<!--<li><a href="pricing-tables.html">Pricing Tables</a></li>-->
 					<li *ngIf="!role_id"><a routerLink="/contact">Contact</a></li>
 
-          <li *ngIf="role_id == 1"><a>For Candidates <i class="ln ln-icon-Arrow-Down"></i></a>
+          <li *ngIf="role_id == '1'"><a>For Candidates <i class="ln ln-icon-Arrow-Down"></i></a>
             <ul>
               <li><a routerLink="/resume-page/myself/none">Resume Page</a></li>
               <li><a routerLink="/add-resume">Add Resume</a></li>
@@ -39,7 +39,7 @@
             </ul>
           </li>
 
-          <li *ngIf="role_id == 2"><a>For Employers <i class="ln ln-icon-Arrow-Down"></i></a>
+          <li *ngIf="role_id == '2'"><a>For Employers <i class="ln ln-icon-Arrow-Down"></i></a>
             <ul>
 							<li><a routerLink="/add-job/add">Add Job</a></li>
 							<li><a routerLink="/manage-jobs">Manage Jobs</a></li>
@@ -61,12 +61,12 @@
               <li><a style="cursor:pointer;" (click)="logout()">LogOut</a></li>
             </ul>
           </li>
-          <li *ngIf="role_id == 1" style="position:relative;"><span *ngIf="matching_jobs" style="position:absolute; overflow:visible; font-size:7; top:-7px; right:-7px; border-radius:7px; background:red; z-index: 1; color:white; padding:2px;">{{matching_jobs}}</span>
+          <li *ngIf="role_id == '1'" style="position:relative;"><span *ngIf="matching_jobs" style="position:absolute; overflow:visible; font-size:7; top:-7px; right:-7px; border-radius:7px; background:red; z-index: 1; color:white; padding:2px;">{{matching_jobs}}</span>
 						<a routerLink="/job-alerts" style="padding:0px;">
 							<img [src]="picture_link" (error)="updateLink($event)" style="width:40px; height:40px; border-radius:20px;">
 						</a>
           </li>
-          <li *ngIf="role_id == 2" style="position:relative;"><span *ngIf="new_applicant" style="position:absolute; overflow:visible; font-size:7; top:-7px; right:-7px; border-radius:7px; background:red; z-index: 1; color:white; padding:2px;">{{new_applicant}}</span>
+          <li *ngIf="role_id == '2'" style="position:relative;"><span *ngIf="new_applicant" style="position:absolute; overflow:visible; font-size:7; top:-7px; right:-7px; border-radius:7px; background:red; z-index: 1; color:white; padding:2px;">{{new_applicant}}</span>
 						<a routerLink="/manage-jobs" style="padding:0px;">
 							<img [src]="picture_link" (error)="updateLink($event)" style="width:40px; height:40px; border-radius:20px;">
 						</a>

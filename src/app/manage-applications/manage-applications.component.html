@@ -10,7 +10,7 @@
 				<ul>
 					<li>You are here:</li>
 					<li>
-						<a href="#">Home</a>
+						<a>Home</a>
 					</li>
 					<li>Job Dashboard</li>
 				</ul>
@@ -33,7 +33,7 @@
 
 		<!-- Select -->
 		<select (change)="changejob($event.target.value)" style="height:50px;">
-			<option [value]="no"> Choose one of the job below</option>
+			<option> Choose one of the job below</option>
 			<option *ngFor="let job of jobs" [value]="job.id"> {{job.title}} , Posted: {{ job.created_at.date | date:'mediumDate' }}</option>
 		</select>
 		<div class="margin-bottom-15"></div>

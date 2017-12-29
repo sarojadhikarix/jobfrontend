@@ -5,7 +5,7 @@
   <div class="container">
     <div class="ten columns">
       <div class="resume-titlebar">
-        <img [src]="picture_link" (error)="updateLink($event)" alt="profile_image" style="max-width:110px; max-height:110px;">
+        <img [src]="picture_link" (error)="updateLink()" alt="profile_image" style="max-width:110px; max-height:110px;">
         <div class="resumes-list-content">
           <h4> {{userInfo.name}} <span *ngIf="cv.status != 'not_found'">{{cv.professional_title}}</span></h4>
           <span  *ngIf="cv.status != 'not_found'" class="icons"><i class="fa fa-map-marker"></i>{{cv.address}}</span>

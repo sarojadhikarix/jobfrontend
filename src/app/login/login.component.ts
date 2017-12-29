@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   router: Router;
   registererror: any = null;
   forgotpassword: ForgotPassword = new ForgotPassword();
+  token: string = '';
 
   constructor(
     private jsService: CustomJavascriptService,
@@ -33,12 +34,20 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.app.isLoggedIn == false) {
-      if (localStorage.getItem('authToken') != '') {
+    // if (this.app.isLoggedIn == false) {
+    //   this.token = localStorage.getItem('authToken');
+    //   if (this.token != '') {
+    //     this.app.isLoggedIn = true;
+    //     this.router.navigateByUrl('/add-job/add');
+    //   }
+    // }else if(this.app.isLoggedIn == true){
+    //     this.router.navigateByUrl('/add-job/add');
+    //   }
+
+        this.token = localStorage.getItem('authToken');
+        console.log(this.token + 'yeiho');
+      if (this.token != null) {
         this.app.isLoggedIn = true;
-        this.router.navigateByUrl('/add-job/add');
-      }
-    }else{
         this.router.navigateByUrl('/add-job/add');
       }
   }

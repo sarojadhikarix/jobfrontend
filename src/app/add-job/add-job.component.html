@@ -90,7 +90,7 @@
 			
 
 			<!-- Created Date -->
-			<div *ngIf="todo == add" class="form">
+			<div *ngIf="todo == 'add'" class="form">
 				<h5>Created Date <span>(optional)</span></h5>
 				<input style="height:30px;" data-role="date" type="date" placeholder="yyyy-mm-dd" [(ngModel)]="job.created_at.date">
 				<p class="note">Created date for new applicants.</p>
@@ -98,7 +98,7 @@
 
 			<!-- TClosing Date -->
 			<div class="form">
-				<h5>Deadline <label *ngIf="joberror?.finish" style="color:red;">*{{joberror?.finish[0]}}</label><label style="font-size:10px;" *ngIf="todo != add">Current deadline: {{job.finish | date:'mediumDate'}}, Change the box if you want to change.</label></h5>
+				<h5>Deadline <label *ngIf="joberror?.finish" style="color:red;">*{{joberror?.finish[0]}}</label><label style="font-size:10px;" *ngIf="todo != 'add'">Current deadline: {{job.finish | date:'mediumDate'}}, Change the box if you want to change.</label></h5>
 				<input style="height:30px;" data-role="date" type="date" placeholder="yyyy-mm-dd" [(ngModel)]="job.finish">
 				<p class="note">Deadline for new applicants.</p>
 			</div>
