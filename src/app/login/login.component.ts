@@ -45,8 +45,7 @@ export class LoginComponent implements OnInit {
     //   }
 
         this.token = localStorage.getItem('authToken');
-        console.log(this.token + 'yeiho');
-      if (this.token != null) {
+      if (this.token != null && this.token.length >= 1) {
         this.app.isLoggedIn = true;
         this.router.navigateByUrl('/add-job/add');
       }
@@ -95,6 +94,7 @@ export class LoginComponent implements OnInit {
         error => this.error = error.json().error;
         this.navigateuser(data);
       }
+      
     );
   }
 

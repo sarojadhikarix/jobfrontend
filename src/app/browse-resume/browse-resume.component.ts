@@ -9,6 +9,7 @@ import { UserService } from './../user/user.service';
 import { environment } from './../../environments/environment';
 import { Search } from './../search/search';
 import { Router } from '@angular/router';
+import { AppComponent } from './../app.component';
 @Component({
   selector: 'app-browse-resume',
   templateUrl: './browse-resume.component.html',
@@ -34,6 +35,7 @@ export class BrowseResumeComponent implements OnInit {
   public page: number;
   router: Router;
   constructor(
+    private app: AppComponent,
     _router: Router,
     private cvService: CVservice,
     private userService: UserService,
@@ -41,6 +43,9 @@ export class BrowseResumeComponent implements OnInit {
   ) { this.router = _router;  }
 
   ngOnInit() {
+    if(this.app.isLoggedIn == false){
+      this.router.navigateByUrl('/login');
+    }
     this.getUserInfo();
     this.searchCV();
     this.picture_error = 'error.png';

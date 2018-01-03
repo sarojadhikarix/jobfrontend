@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppComponent } from './../app.component';
 
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Mail } from './../mail/mail';
@@ -29,6 +30,7 @@ export class ResumePageComponent implements OnInit {
   picture_error: string = '';
   router: Router;
   constructor(
+    private app: AppComponent,
     _router: Router,
     private route: ActivatedRoute,
     private cvService: CVservice,
@@ -36,7 +38,10 @@ export class ResumePageComponent implements OnInit {
     private mailservice: MailService
   ) {  this.router = _router; }
 
-  ngOnInit() {
+  ngOnInit() {    
+    if(this.app.isLoggedIn == false){
+    this.router.navigateByUrl('/login');
+  }
     this.route.params.subscribe(params => {
       this.user_id = (params['user_id']);
       this.toemail = (params['email']);

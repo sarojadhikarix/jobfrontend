@@ -2,6 +2,8 @@ import { Component, ElementRef, OnInit } from '@angular/core';
 import { environment } from './../../environments/environment';
 import { UserInfo } from './../user/user';
 import { UserService } from './../user/user.service';
+import { Router } from '@angular/router';
+import { AppComponent } from './../app.component';
 
 @Component({
   selector: 'app-user-account',
@@ -21,13 +23,18 @@ export class UserAccountComponent implements OnInit {
   public propicfileerror: string;
   public propicerror: any = null;
   public returnedcvfilename: string;
-
+  router: Router;
   constructor(
+    private app: AppComponent,
+    _router: Router,
     private elem: ElementRef,
     private userService: UserService
-  ) { }
+  ) { this.router = _router; }
 
   ngOnInit() {
+    if(this.app.isLoggedIn == false){
+      this.router.navigateByUrl('/login');
+    }
     this.getUserInfo();
     
     this.picture_error = environment.apiRoute + 'storage/propic/error.png';

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router, Params  } from '@angular/router';
 @Component({
   selector: 'app-browse-categories',
   templateUrl: './browse-categories.component.html',
@@ -9,7 +9,8 @@ export class BrowseCategoriesComponent implements OnInit {
 
   router: Router;
 
-  constructor(_router: Router) {
+  constructor(_router: Router,
+    private route: ActivatedRoute) {
     this.router = _router;
   }
 

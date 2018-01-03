@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomJavascriptService } from './../custom/custom-javascript.service';
+import { ActivatedRoute, Router, Params } from '@angular/router';
+
 import { AppComponent } from './../app.component';
 import { UserService } from './../user/user.service';
 import { environment } from './../../environments/environment';
@@ -23,13 +25,15 @@ export class HeaderSecondaryComponent implements OnInit {
   matching_jobs: string = '';
   picture_link: string = '';
   picture_error: string = '';
+  router: Router;
   public userInfo: UserInfo = new UserInfo();
 
   constructor(
+    _router: Router,
     private jsService: CustomJavascriptService,
     private app: AppComponent,
     private userService: UserService
-  ) { }
+  ) { this.router = _router; }
 
   ngOnInit() {
     $('body').customJquery();

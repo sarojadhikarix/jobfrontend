@@ -5,6 +5,8 @@ import { JobService } from './../job/job.service';
 import { Job } from './../job/job';
 import { UserService } from './../user/user.service';
 import { JobStatus } from './../job/jobstatus';
+import { AppComponent } from './../app.component';
+
 @Component({
   selector: 'app-appliedjobs',
   templateUrl: './appliedjobs.component.html',
@@ -25,6 +27,7 @@ export class AppliedjobsComponent implements OnInit {
   public page: number;
   public count: number = 0;
   constructor(
+    private app: AppComponent,
     private route: ActivatedRoute,
     private router: Router,
     private jobService: JobService,
@@ -32,6 +35,9 @@ export class AppliedjobsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    if(this.app.isLoggedIn == false){
+      this.router.navigateByUrl('/login');
+    }
     this.getUserInfo();
   }
 

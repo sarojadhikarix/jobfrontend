@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppComponent } from './../app.component';
 
 import { CV } from './../cv/cv';
 import { UserInfo } from './../user/user';
@@ -31,6 +32,7 @@ export class JobAlertsComponent implements OnInit {
   public page: number;
 
   constructor(
+    private app: AppComponent,
     private jobService: JobService,
     _router: Router,
     private cvService: CVservice,
@@ -39,6 +41,9 @@ export class JobAlertsComponent implements OnInit {
   }
 
   ngOnInit() {
+    if(this.app.isLoggedIn == false){
+      this.router.navigateByUrl('/login');
+    }
     this.getUserInfo();
   }
 

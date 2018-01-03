@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppComponent } from './../app.component';
 
 import { UserService } from './../user/user.service';
 import { Job } from './../job/job';
@@ -26,6 +27,7 @@ export class ManageApplicationsComponent implements OnInit {
   picture_link_end: string = '';
   picture_error: string = '';
   constructor(
+    private app: AppComponent,
     private route: ActivatedRoute,
     _router: Router,
     private jobService: JobService,
@@ -33,6 +35,9 @@ export class ManageApplicationsComponent implements OnInit {
   ) { this.router = _router; }
 
   ngOnInit() {
+    if(this.app.isLoggedIn == false){
+      this.router.navigateByUrl('/login');
+    }
     this.route.params.subscribe(params => {
       this.job_id = (params['job-id']);
       if (this.job_id == 'none') {

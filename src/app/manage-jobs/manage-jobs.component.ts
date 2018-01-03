@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppComponent } from './../app.component';
 
 import { UserService } from './../user/user.service';
 import { Job } from './../job/job';
@@ -23,12 +24,16 @@ export class ManageJobsComponent implements OnInit {
   public page: number;
   router: Router;
   constructor(
+    private app: AppComponent,
     _router: Router,
     private jobService: JobService,
     private userService: UserService
   ) { this.router = _router;}
 
   ngOnInit() {
+    if(this.app.isLoggedIn == false){
+      this.router.navigateByUrl('/login');
+    }
     this.getUserInfo();
   }
 

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router, Params } from '@angular/router';
 import { UserService } from './../user/user.service';
 import { Job } from './../job/job';
 import { JobService } from './../job/job.service';
+import { AppComponent } from './../app.component';
 @Component({
   selector: 'app-add-job',
   templateUrl: './add-job.component.html',
@@ -19,6 +20,7 @@ export class AddJobComponent implements OnInit {
   public job: Job = new Job();
   router: Router;
   constructor(
+    private app: AppComponent,
     private route: ActivatedRoute,
     _router: Router,
     private jobService: JobService,
@@ -26,6 +28,9 @@ export class AddJobComponent implements OnInit {
   ) { this.router = _router; }
 
   ngOnInit() {
+    if(this.app.isLoggedIn == false){
+      this.router.navigateByUrl('/login');
+    }
     this.getUserInfo();
     this.route.params.subscribe(params => {
       this.todo = (params['todo']);

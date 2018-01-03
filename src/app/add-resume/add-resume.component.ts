@@ -5,6 +5,7 @@ import { UserInfo } from './../user/user';
 import { CVservice } from './../cv/cv.service';
 import { UserService } from './../user/user.service';
 import { Router } from '@angular/router';
+import { AppComponent } from './../app.component';
 
 declare var $: any;
 
@@ -26,6 +27,7 @@ export class AddResumeComponent implements OnInit {
   public cverror: any = null;
   router: Router;
   constructor(
+    private app: AppComponent,
     _router: Router,
     private cvService: CVservice,
     private userService: UserService,
@@ -34,6 +36,9 @@ export class AddResumeComponent implements OnInit {
 
 
   ngOnInit() {
+    if(this.app.isLoggedIn == false){
+      this.router.navigateByUrl('/login');
+    }
     this.getUserInfo();
   }
 

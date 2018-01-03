@@ -30,6 +30,9 @@ export class HeaderComponent implements OnInit {
     private app: AppComponent) { }
 
   ngOnInit() {
+    if(this.app.isLoggedIn == false){
+      
+    }
     $('body').customJquery();
     this.getUserInfo();
     this.picture_error = environment.apiRoute + 'storage/propic/error.png';
