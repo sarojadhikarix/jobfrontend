@@ -50,7 +50,7 @@
 							<div class="job-icons">
 								<span><i class="fa fa-briefcase"></i> {{job.company_name}}</span>
 								<span><i class="fa fa-map-marker"></i> {{job.district}}</span>
-								<span><i class="fa fa-date"></i>Deadline: {{job.finish | date:'mediumDate'}}</span>
+								<span style="padding: 5px; background-color: rgb(52, 156, 78); color: white; border-radius: 5px;"><i class="fa fa-date"></i>Deadline: {{job.finish | datediff}}</span>
 							</div>
 							</div>
             			</a>

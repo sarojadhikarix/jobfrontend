@@ -24,9 +24,9 @@ export class ContactComponent implements OnInit {
     private mailservice: MailService) { }
 
   ngOnInit() {
-    this.jsService.appendToBody('./../../assets/scripts/jquery.gmaps.min.js');
-    this.jsService.appendToBody('./../../assets/scripts/maprun.js');
-    $('body').customMap();
+    // this.jsService.appendToBody('./../../assets/scripts/jquery.gmaps.min.js');
+    // this.jsService.appendToBody('./../../assets/scripts/maprun.js');
+    // $('body').customMap();
   }
 
   public sendMail() {

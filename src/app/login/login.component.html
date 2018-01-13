@@ -179,7 +179,7 @@
 
 					<p *ngIf="forgotpassword.checktoken == true" class="form-row form-row-wide">
 						<label *ngIf="registererror?.token" style="color:red;">*{{registererror?.token[0]}}</label>
-						<label for="username2">Token:
+						<label for="username2">Token: <i>If you don't get email within 5 minute, Please repeat the process agagin.</i>
 							<i class="fa fa-shield"></i>
 							<input placeholder="Check your email for the token." type="text" class="input-text" name="username" id="username2" [(ngModel)]="forgotpassword.token"
 							/>

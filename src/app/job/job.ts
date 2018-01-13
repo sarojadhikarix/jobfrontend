@@ -21,7 +21,6 @@ export class Job {
             district : string = '';
             country : string = 'Nepal';
             zone : string = '';
-            status : boolean = false;
             filled : boolean = false;
             applicant_count: number = 0;
             category: any;

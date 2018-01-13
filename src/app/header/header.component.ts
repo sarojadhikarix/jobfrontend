@@ -30,11 +30,11 @@ export class HeaderComponent implements OnInit {
     private app: AppComponent) { }
 
   ngOnInit() {
-    if(this.app.isLoggedIn == false){
-      
+//      this.jsService.appendToBody('./../../assets/scripts/custom.js');
+    $('body').customJquery(); 
+    if (this.app.isLoggedIn == true) {
+      this.getUserInfo();
     }
-    $('body').customJquery();
-    this.getUserInfo();
     this.picture_error = environment.apiRoute + 'storage/propic/error.png';
     this.matching_jobs = localStorage.getItem('matching_jobs');
   }

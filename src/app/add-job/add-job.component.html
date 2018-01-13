@@ -63,7 +63,6 @@
 						<option value="7">Education Training</option>
 						<option value="8">Healthcare</option>
 						<option value="9">Transportation / Logistics</option>
-						<option value="10">Transportation / Logistics</option>
 					</select>
 				</div>
 			</div>
@@ -112,13 +111,13 @@
 			<!-- Email -->
 			<div class="form">
 				<h5>Company Email<label *ngIf="joberror?.company_email" style="color:red;">*{{joberror?.company_email[0]}}</label></h5>
-				<input class="search-field" type="email" placeholder="mail@example.com" [(ngModel)]="job.company_email" readonly />
+				<input class="search-field" type="email" placeholder="mail@example.com" [(ngModel)]="job.company_email"/>
 			</div>
 
 			<!-- Company Name -->
 			<div class="form">
 				<h5>Company Name</h5>
-				<input type="text" placeholder="Enter the name of the company" [(ngModel)]="job.company_name" readonly>
+				<input type="text" placeholder="Enter the name of the company" [(ngModel)]="job.company_name">
 			</div>
 
 			<!-- Company Phone -->

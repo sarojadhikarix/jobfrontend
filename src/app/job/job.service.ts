@@ -80,4 +80,9 @@ export class JobService {
             .catch(this.handleError)
     }
 
+    public getAllJobs(){
+        return this.http.get(environment.apiRoute + 'jobs/getjobs/all')
+        .map(res => res.json().data);
+    }
+
 }

@@ -5,12 +5,12 @@
 	<div class="container">
 
 		<div class="sixteen columns">
-			<h2>Manage Jobs</h2>
+			<h2>Admin Panel</h2>
 			<nav id="breadcrumbs">
 				<ul>
 					<li>You are here:</li>
 					<li><a href="#">Home</a></li>
-					<li>Job Dashboard</li>
+					<li>Admin Panel</li>
 				</ul>
 			</nav>
 		</div>
@@ -26,7 +26,7 @@
 	<!-- Table -->
 	<div class="sixteen columns">
 
-		<p class="margin-bottom-25">Your listings are shown in the table below.</p>
+		<p class="margin-bottom-25">All job listings are shown in the table below.</p>
 
 		<table class="manage-table responsive-table">
 
@@ -56,7 +56,10 @@
 					<a routerLink="/add-job/{{job.id}}"><i class="fa fa-pencil"></i> Edit</a>
 					<a *ngIf="job.filled == 0" (click)='markFilled(job.id)' style="cursor:pointer;"><i class="fa  fa-check "></i> Mark Filled</a>
 					<a *ngIf="job.filled == 1" (click)='markNotFilled(job.id)' style="cursor:pointer;"><i class="fa fa-times "></i> Mark Not Filled</a>
-					<a routerLink="/job/{{job.id}}" style="cursor:pointer;"><i class="fa fa-eye"></i>View</a>
+          <a routerLink="/job/{{job.id}}" style="cursor:pointer;"><i class="fa fa-eye"></i>View</a>
+					<a *ngIf="job.status == 0" (click)='markAllow(job.id)' style="cursor:pointer;"><i class="fa  fa-check "></i> Allow</a>
+					<a *ngIf="job.status == 1" (click)='markBan(job.id)' style="cursor:pointer;"><i class="fa fa-times "></i> Ban</a>
+          
 				</td>
 			</tr>
 

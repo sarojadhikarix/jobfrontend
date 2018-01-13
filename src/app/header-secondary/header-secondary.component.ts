@@ -36,8 +36,12 @@ export class HeaderSecondaryComponent implements OnInit {
   ) { this.router = _router; }
 
   ngOnInit() {
+    //this.jsService.appendToBody('./../../assets/scripts/custom.js');
     $('body').customJquery();
-    this.getUserInfo();
+
+    if (this.app.isLoggedIn == true) {
+      this.getUserInfo();
+    }
     this.picture_error = environment.apiRoute + 'storage/propic/error.png';
     this.matching_jobs = localStorage.getItem('matching_jobs');
   }

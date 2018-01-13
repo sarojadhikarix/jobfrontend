@@ -6,6 +6,7 @@ import { Job } from './../job/job';
 import { CategoryService } from './../category/category.service';
 import { Search } from './../search/search';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',

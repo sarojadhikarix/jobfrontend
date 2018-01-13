@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
     // }else if(this.app.isLoggedIn == true){
     //     this.router.navigateByUrl('/add-job/add');
     //   }
-
+    
         this.token = localStorage.getItem('authToken');
       if (this.token != null && this.token.length >= 1) {
         this.app.isLoggedIn = true;
@@ -103,6 +103,8 @@ export class LoginComponent implements OnInit {
       this.router.navigateByUrl('/job-alerts');
     }else if(data.role_id == "2"){
       this.router.navigateByUrl('/manage-jobs');
+    }else if(data.role_id == "3"){
+      this.router.navigateByUrl('/adminpanel');
     }
   }
 

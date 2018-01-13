@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 
+import { AppComponent } from './../app.component';
 import { JobService } from './../job/job.service';
 import { CategoryService } from './../category/category.service';
 import { Job } from './../job/job';
@@ -27,15 +28,18 @@ export class BrowseJobsComponent implements OnInit {
   public page: number;
   router: Router;
   constructor(
+    private app: AppComponent,
     _router: Router,
     private route: ActivatedRoute,
     private jobService: JobService,
     private categoryService: CategoryService,
     private userService: UserService
-  ) {this.router = _router; }
+  ) { this.router = _router; }
 
   ngOnInit() {
-    this.getUserInfo();
+    if (this.app.isLoggedIn == true) {
+      this.getUserInfo();
+    }
     this.type = localStorage.getItem('type');
     if (this.type == '') {
       this.type = 'alljobs';

@@ -6,6 +6,7 @@ import { HttpModule, XHRBackend, RequestOptions, BaseRequestOptions, Headers, Re
 import { HttpClient } from './HttpClient';
 import {  TruncatePipe }   from './pipes/limit/limitto';
 import { PdfViewerComponent } from 'ng2-pdf-viewer';
+import { DateDiff } from './pipes/datediff.pipe';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -29,6 +30,7 @@ import { ManageApplicationsComponent } from './manage-applications/manage-applic
 import { BrowseResumeComponent } from './browse-resume/browse-resume.component';
 import { UserAccountComponent } from './user-account/user-account.component';
 import { AppliedjobsComponent } from './appliedjobs/appliedjobs.component';
+import { AdminpanelComponent } from './adminpanel/adminpanel.component';
 
 export function httpClientFactory(backend: XHRBackend, defaultOptions: RequestOptions) {
   return new HttpClient(backend, defaultOptions);
@@ -63,6 +65,7 @@ const routes: Routes = [
   { path: '404', component: ErrorpageComponent },
   { path: 'user-account', component:UserAccountComponent},
   { path: 'appliedjobs', component:AppliedjobsComponent},
+  { path: 'adminpanel', component:AdminpanelComponent},
   { path: '**', redirectTo: '/404', pathMatch: 'full' }
 ];
 
@@ -91,7 +94,9 @@ const routes: Routes = [
     BrowseResumeComponent,
     PdfViewerComponent,
     UserAccountComponent,
-    AppliedjobsComponent
+    AppliedjobsComponent,
+    AdminpanelComponent,
+    DateDiff
   ],
   imports: [
     BrowserModule,

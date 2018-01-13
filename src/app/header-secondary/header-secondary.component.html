@@ -71,6 +71,11 @@
 							<img [src]="picture_link" (error)="updateLink($event)" style="width:40px; height:40px; border-radius:20px;">
 						</a>
 					</li>
+					<li *ngIf="role_id == '3'" style="position:relative;"><span *ngIf="new_applicant" style="position:absolute; overflow:visible; font-size:7; top:-7px; right:-7px; border-radius:7px; background:red; z-index: 1; color:white; padding:2px;">*</span>
+						<a routerLink="/adminpanel" style="padding:0px;">
+							<img [src]="picture_link" (error)="updateLink($event)" style="width:40px; height:40px; border-radius:20px;">
+						</a>
+					</li>
 				</ul>
 
 			</nav>
