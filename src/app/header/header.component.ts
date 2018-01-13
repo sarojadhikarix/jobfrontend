@@ -31,7 +31,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
 //      this.jsService.appendToBody('./../../assets/scripts/custom.js');
-    $('body').customJquery(); 
+    $('body').customJquery(); //hi
     if (this.app.isLoggedIn == true) {
       this.getUserInfo();
     }
