@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
         this.token = localStorage.getItem('authToken');
       if (this.token != null && this.token.length >= 1) {
         this.app.isLoggedIn = true;
-        this.router.navigateByUrl('/add-job/add');
+        this.getUserInfo();
       }
   }
 

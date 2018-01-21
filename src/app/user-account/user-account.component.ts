@@ -55,14 +55,17 @@ export class UserAccountComponent implements OnInit {
     this.propicfilename = file.name;
     formData.append('propic', file, file.name);
     formData.append('user_id', (this.userInfo.id).toString());
+    document.getElementById('uploadtext').innerText = 'Uploading, Please wait...';
 
     this.userService.addpropic(formData).subscribe(
       data => {
         if (data.success) {
           this.success = data.success;
           this.picture_link = environment.apiRoute + 'storage/propic/' + this.userInfo.id + '_propic.png?' + new Date().getTime();
+          document.getElementById('uploadtext').innerText = 'Upload New';
         } else {
           this.error = data.error;
+          document.getElementById('uploadtext').innerText = 'Upload Failed, Upload new';
         }
       },
       error => this.handleError(error)
@@ -74,6 +77,7 @@ export class UserAccountComponent implements OnInit {
     this.propicerror = null;
     if (error.propic) {
       this.propicfileerror = error.propic[0];
+      document.getElementById('uploadtext').innerText = 'Upload new';
     }
   }
 

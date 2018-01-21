@@ -8,6 +8,7 @@ import {  TruncatePipe }   from './pipes/limit/limitto';
 import { PdfViewerComponent } from 'ng2-pdf-viewer';
 import { DateDiff } from './pipes/datediff.pipe';
 
+
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { ErrorpageComponent } from './errorpage/errorpage.component';

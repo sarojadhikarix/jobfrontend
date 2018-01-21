@@ -34,7 +34,7 @@ export class UserService {
         this.setAccessToken('');
         this.setUserName('');
         this.setRoleId('');
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/login');
     }
 
 

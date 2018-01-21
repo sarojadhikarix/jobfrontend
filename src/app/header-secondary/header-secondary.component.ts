@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomJavascriptService } from './../custom/custom-javascript.service';
-import { ActivatedRoute, Router, Params } from '@angular/router';
+import { ActivatedRoute, Router, Params, NavigationEnd } from '@angular/router';
 
 import { AppComponent } from './../app.component';
 import { UserService } from './../user/user.service';
@@ -29,13 +29,19 @@ export class HeaderSecondaryComponent implements OnInit {
   public userInfo: UserInfo = new UserInfo();
 
   constructor(
-    _router: Router,
+    private _router: Router,
     private jsService: CustomJavascriptService,
     private app: AppComponent,
     private userService: UserService
   ) { this.router = _router; }
 
   ngOnInit() {
+    this._router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+        return;
+      }
+      window.scrollTo(0, 0)
+    });
     //this.jsService.appendToBody('./../../assets/scripts/custom.js');
     $('body').customJquery();
 

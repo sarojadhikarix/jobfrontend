@@ -4,6 +4,7 @@ import { UserService } from './../user/user.service';
 import { AppComponent } from './../app.component';
 import { environment } from './../../environments/environment';
 import { UserInfo } from './../user/user';
+import { ActivatedRoute, Router, Params, NavigationEnd } from '@angular/router';
 declare var $: any;
 
 @Component({
@@ -27,16 +28,24 @@ export class HeaderComponent implements OnInit {
   constructor(
     private jsService: CustomJavascriptService,
     private userService: UserService,
-    private app: AppComponent) { }
+    private app: AppComponent,
+    private _router: Router) { }
 
   ngOnInit() {
-//      this.jsService.appendToBody('./../../assets/scripts/custom.js');
+    this._router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+        return;
+      }
+      window.scrollTo(0, 0)
+    });
+    //      this.jsService.appendToBody('./../../assets/scripts/custom.js');
     $('body').customJquery(); //hi
     if (this.app.isLoggedIn == true) {
       this.getUserInfo();
     }
     this.picture_error = environment.apiRoute + 'storage/propic/error.png';
     this.matching_jobs = localStorage.getItem('matching_jobs');
+
   }
 
   public logout() {

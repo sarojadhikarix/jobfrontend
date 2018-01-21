@@ -5,7 +5,7 @@
 
 export const environment = {
   production: false,
-  apiRoute: 'http://45.76.166.130/',
+  apiRoute: 'http://45.76.166.130:81/',
   //apiRoute: 'http://localhost:8000/',
   uploadsRoute: 'http://'
 };

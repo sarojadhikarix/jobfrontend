@@ -46,9 +46,10 @@
 
 			<div class="form">
 				<h5>Profile picture <span></span></h5>
-				<label class="upload-btn">
+				<label style="text-align:center;" class="upload-btn">
 				    <input id="propicfileinput" (change)="fileChangeEvent($event)" type="file" />
-				    <i class="fa fa-upload"></i> Upload New
+					<i class="fa fa-upload"></i> 
+					<div id="uploadtext">Upload New</div>
 				</label>
 				<img [src]="picture_link" (error)="updateLink()" style="max-width:200px; max-height:200px; border-radius:20px;">
 				
